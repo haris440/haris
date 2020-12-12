@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "573465099101",
+    "project_id": "kidosparkserver",
+    "storage_bucket": "kidosparkserver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573465099101:android:f4b452f312fb77f4fd86b4",
+        "android_client_info": {
+          "package_name": "kido.sparks.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573465099101-glo2fim977e7dif3jrbg27l1m7clrg68.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiH6zargIV8UGagkIqy8bvlEZxnLIBJeA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "573465099101-glo2fim977e7dif3jrbg27l1m7clrg68.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

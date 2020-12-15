@@ -61,7 +61,7 @@ public class Add_Children extends AppCompatActivity {
         ArrayAdapter aa2 = new ArrayAdapter(this, android.R.layout.simple_spinner_item, age);
         aa2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         agespinner.setAdapter(aa2);
-        getdata();
+
     }
 
     public void fun_add(View view) {
@@ -110,38 +110,5 @@ public class Add_Children extends AppCompatActivity {
         }
 
     }
-    public void getdata() {
-        DatabaseReference refdata;
-        refdata = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs");
-        refdata.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (snapshot.exists()) {
-
-
-                //    mProgressBar.setVisibility(View.GONE);
-
-
-                    Viewchild newComment = snapshot.getValue(Viewchild.class);
-                    String commentKey = snapshot.getKey();
-                    Log.e("hjgk",""+newComment.getBabygender());
-                 //   list.add(newComment);
-
-
-
-                } else {
-                    //Toast.makeText(Parent_Home.this, "Add childens", Toast.LENGTH_SHORT).show();
-                  //  mProgressBar.setVisibility(View.GONE);
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 }

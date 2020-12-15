@@ -16,6 +16,7 @@ import kido.sparks.app.SignUp_Screens.SignUp;
 
 public class SplashScreen extends AppCompatActivity {
     FirebaseAuth mAuth;
+//vhnage
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +24,8 @@ public class SplashScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen_);
-        mAuth = FirebaseAuth.getInstance();
 
-        new Handler().postDelayed(new Runnable() {
+       new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (mAuth.getCurrentUser() != null) {

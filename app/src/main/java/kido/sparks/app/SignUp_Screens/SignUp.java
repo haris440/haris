@@ -62,7 +62,6 @@ public class SignUp extends AppCompatActivity {
         ed_pass = findViewById(R.id.edpass);
         btn = findViewById(R.id.button);
         mProgressBar=(ProgressBar)findViewById(R.id.progressBar) ;
-
         mAuth = FirebaseAuth.getInstance();
     }
 
@@ -105,9 +104,9 @@ public class SignUp extends AppCompatActivity {
 
         registerparent();
     }
-
     private void registerparent() {
-        if (cn.checkNetworkConnection()) {
+        if (cn.checkNetworkConnection())
+        {
 
             String email = ed_email.getText().toString().trim();
             String password = ed_pass.getText().toString().trim();
@@ -115,7 +114,10 @@ public class SignUp extends AppCompatActivity {
 
             btn.setVisibility(View.INVISIBLE);
             mAuth = FirebaseAuth.getInstance();
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+            {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -147,20 +149,19 @@ public class SignUp extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-
+                    Toast.makeText(SignUp.this, ""+e.getLocalizedMessage().toString(), Toast.LENGTH_SHORT).show();
                 }
             });
 
 
-        } else {
+        }
+        else {
             Toast.makeText(SignUp.this, "NO INTERNET CONNECTION", Toast.LENGTH_LONG).show();
         }
 
     }
     private void saveparentinfo(String firebaseid) {
         String  name=ed_name.getText().toString().trim();
-
-
         String  email=ed_email.getText().toString().trim();
         String  pass=ed_pass.getText().toString().trim();
 
@@ -170,6 +171,9 @@ public class SignUp extends AppCompatActivity {
         userInfo.put("pass",pass);
         userInfo.put("email",email);
         userInfo.put("extra","0");
+
+
+
         refregisterparent.updateChildren(userInfo).addOnCompleteListener(new OnCompleteListener() {
             @Override
             public void onComplete(@NonNull Task task) {
@@ -180,7 +184,7 @@ public class SignUp extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                Toast.makeText(SignUp.this, ""+e.getLocalizedMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 

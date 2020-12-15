@@ -102,6 +102,7 @@ public class SignIn extends AppCompatActivity {
 
             btn.setVisibility(View.INVISIBLE);
             mAuth = FirebaseAuth.getInstance();
+
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {

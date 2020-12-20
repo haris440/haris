@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kido.sparks.app">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -10,7 +11,7 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Parent_Panel.ViewChild"></activity>
+        <activity android:name=".Parent_Panel.View_Child"></activity>
         <activity android:name=".Parent_Panel.Add_Children" />
         <activity android:name=".Parent_Panel.Parent_Home" />
         <activity android:name=".SignIn_Screens.SignIn" />

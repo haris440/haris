@@ -1,8 +1,9 @@
 package kido.sparks.app.Model;
 
+import java.io.Serializable;
 import java.util.Collection;
 
-public class Viewchild {
+public class Viewchild implements Serializable {
     public Viewchild() {
     }
 

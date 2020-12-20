@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ import kido.sparks.app.Model.Viewchild;
 import kido.sparks.app.R;
 import kido.sparks.app.SignIn_Screens.SignIn;
 
-public class Parent_Home extends AppCompatActivity {
+public class Parent_Home extends AppCompatActivity implements ViewChildrenList_Adapter.OnrecylerListener {
     FirebaseAuth mAuth;
     RecyclerView recyclerView;
     DatabaseReference refdata;
@@ -51,7 +52,7 @@ public class Parent_Home extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
-        adapter = new ViewChildrenList_Adapter();
+        adapter = new ViewChildrenList_Adapter(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -139,5 +140,12 @@ public class Parent_Home extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+    }
+
+    @Override
+    public void OnrecylerListener(int position, List<Viewchild> viewChildren) {
+        Intent intent=new Intent(Parent_Home.this,View_Child.class);
+        intent.putExtra("list", viewChildren.get(position));
+        startActivity(intent);
     }
 }

@@ -15,20 +15,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kido.sparks.app.Model.Viewchild;
-import kido.sparks.app.Parent_Panel.Add_Children;
 import kido.sparks.app.R;
 
 public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenList_Adapter.Viewholder_Child> {
+    OnrecylerListener  mOnrecylerListener;
    List<Viewchild> vlist=new ArrayList<>();
     @NonNull
     @Override
     public Viewholder_Child onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_viewchild, parent, false);
-        return new ViewChildrenList_Adapter.Viewholder_Child(view);
+        return new ViewChildrenList_Adapter.Viewholder_Child(view,mOnrecylerListener);
 
     }
+    public ViewChildrenList_Adapter( OnrecylerListener mOnrecylerListener) {
 
+        this.mOnrecylerListener = mOnrecylerListener;
+
+    }
     @Override
     public void onBindViewHolder(@NonNull Viewholder_Child holder, int position) {
         holder.name.setText("" + vlist.get(position).getBabyname());
@@ -67,17 +71,28 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
     }
 
 
-    public class Viewholder_Child extends RecyclerView.ViewHolder{
+    public class Viewholder_Child extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name,age,weight,gender;
         ImageView img;
-        public Viewholder_Child(@NonNull View itemView) {
+        OnrecylerListener mOnrecylerListener1;
+        public Viewholder_Child(@NonNull View itemView, OnrecylerListener mOnrecylerListener) {
             super(itemView);
             name=itemView.findViewById(R.id.name);
             age=itemView.findViewById(R.id.age);
             weight=itemView.findViewById(R.id.weight);
             gender=itemView.findViewById(R.id.gender);
             img=itemView.findViewById(R.id.imageView);
+            mOnrecylerListener1 = mOnrecylerListener;
+
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            mOnrecylerListener1.OnrecylerListener(getAdapterPosition(), vlist);
+        }
+    }
+    public interface OnrecylerListener {
+        void OnrecylerListener(int position, List<Viewchild> viewChildren);
     }
 }

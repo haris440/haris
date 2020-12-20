@@ -127,13 +127,13 @@ ImageView babyimage;
             hashMap.put("agemonth", "" + c_age.getText());
             hashMap.put("ageyear", "" + c_age.getText());
             hashMap.put("ageday", "" + c_age.getText());
-            hashMap.put("babyweight", "" + weight);
+            hashMap.put("babyweight", "" + weight+" kg");
             hashMap.put("babygender", "" + genderspinner.getSelectedItem().toString());
             hashMap.put("babyimg", ""+ genderspinner.getSelectedItem().toString());
            refaddchild.updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                @Override
                public void onComplete(@NonNull Task task) {
-                   btn.setVisibility(View.VISIBLE);
+
          //          Toast.makeText(Add_Children.this, "Added Successfully , Want to Add More?", Toast.LENGTH_LONG).show();
                }
            }).addOnFailureListener(new OnFailureListener() {

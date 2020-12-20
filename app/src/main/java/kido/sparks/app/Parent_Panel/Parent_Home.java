@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class Parent_Home extends AppCompatActivity {
     private ProgressBar mProgressBar;
     ViewChildrenList_Adapter adapter;
     private List<Viewchild> list = new ArrayList<>();
+    ImageView empty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,27 +55,27 @@ public class Parent_Home extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
+        empty = findViewById(R.id.empty);
 
         refdata = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs");
 
-          GetChildList();
+        GetChildList();
 
     }
 
     public void GetChildList() {
 
 
-
         refdata.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-list.clear();
+                list.clear();
                 if (snapshot.exists()) {
+                    empty.setVisibility(View.INVISIBLE);
                     for (DataSnapshot ds1 : snapshot.getChildren()) {
                         Log.e("asasa", "" + ds1.getValue());
                         Viewchild newComment = ds1.getValue(Viewchild.class);
-                        Log.e("sss",""+newComment.getBabygender()+newComment.getBabyweight());
+                        Log.e("sss", "" + newComment.getBabygender() + newComment.getBabyweight());
                         list.add(newComment);
                     }
                     mProgressBar.setVisibility(View.GONE);
@@ -81,8 +83,11 @@ list.clear();
 
 
                 } else {
+                    list.clear();
                     Toast.makeText(Parent_Home.this, "Add childens", Toast.LENGTH_SHORT).show();
                     mProgressBar.setVisibility(View.GONE);
+                    empty.setVisibility(View.VISIBLE);
+                    adapter.setlist(list);
                 }
 
 

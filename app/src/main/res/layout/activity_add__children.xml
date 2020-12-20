@@ -140,7 +140,7 @@
                     android:backgroundTint="@color/black"
                     android:ems="10"
                     android:hint="Enter Baby Weight (eg 3.1 kg )"
-                    android:inputType="textPersonName"
+                    android:inputType="numberDecimal"
                     android:textColor="@color/black" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

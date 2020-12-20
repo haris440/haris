@@ -36,7 +36,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/sign_shape"
         android:elevation="10dp"
         android:orientation="vertical"
@@ -91,7 +93,7 @@
                 android:background="@drawable/editext_shape"
                 android:elevation="10dp"
                 android:ems="10"
-                android:hint="Create Your Password"
+                android:hint="Enter Your Password"
                 android:inputType="textPassword"
                 android:textColor="#fff"
                 android:textColorHint="#fff"
@@ -130,10 +132,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:onClick="fun_Open_signup"
         android:layout_marginBottom="8dp"
-        android:text="Dont have Account? Click Here To Sign Up"
+      android:onClick="forgotpass"
+        android:text="Forgot Password ?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="fun_Open_signup"
+        android:gravity="center"
+        android:text="Dont have Account?\nClick Here To Sign Up"
+        android:textSize="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

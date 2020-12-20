@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
@@ -144,5 +145,10 @@ public class SignIn extends AppCompatActivity {
             Toast.makeText(SignIn.this, "NO INTERNET CONNECTION", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    public void forgotpass(View view) {
+        Forgot_Password_Dialog forgot_password_dialog=new Forgot_Password_Dialog(SignIn.this);
+        forgot_password_dialog.show();
     }
 }

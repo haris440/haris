@@ -9,10 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import kido.sparks.app.Model.Viewchild;
+import kido.sparks.app.Parent_Panel.Add_Children;
 import kido.sparks.app.R;
 
 public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenList_Adapter.Viewholder_Child> {
@@ -32,17 +35,23 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
         holder.age.setText(""+vlist.get(position).getBabyage());
         holder.weight.setText(""+vlist.get(position).getBabyweight());
         holder.gender.setText(""+vlist.get(position).getBabygender());
+
+
+            Glide.with(holder.itemView).asDrawable().centerCrop().load(""+vlist.get(position).getBabyimg()).into(holder.img);
+
         if (vlist.get(position).getBabygender().toString().equals("Male"))
         {
-            holder.img.setImageResource(R.drawable.iconmale);
+
         }
-        else {
-            holder.img.setImageResource(R.drawable.iconfemale);
+        else
+        {
+
             holder.name.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
             holder.age.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
             holder.weight.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
             holder.gender .setTextColor(holder.itemView.getResources().getColor(R.color.pink));
         }
+
     }
 
     @Override

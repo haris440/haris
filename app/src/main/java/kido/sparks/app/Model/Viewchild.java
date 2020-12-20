@@ -3,24 +3,49 @@ package kido.sparks.app.Model;
 import java.util.Collection;
 
 public class Viewchild {
-    public Viewchild() { }
+    public Viewchild() {
+    }
 
+    String agemonth;
+    String ageyear;
+    String ageday;
+    String babyimg;
     String key;
     String status;
     String babyname;
     String babyage;
-    String babyweight;
-    String babygender;
-    public Viewchild(String key, String status, String babyname, String babyage, String babyweight, String babygender) {
-        this.key = key;
-        this.status = status;
-        this.babyname = babyname;
-        this.babyage = babyage;
-        this.babyweight = babyweight;
-        this.babygender = babygender;
+
+    public String getAgemonth() {
+        return agemonth;
     }
 
+    public void setAgemonth(String agemonth) {
+        this.agemonth = agemonth;
+    }
 
+    public String getAgeyear() {
+        return ageyear;
+    }
+
+    public void setAgeyear(String ageyear) {
+        this.ageyear = ageyear;
+    }
+
+    public String getAgeday() {
+        return ageday;
+    }
+
+    public void setAgeday(String ageday) {
+        this.ageday = ageday;
+    }
+
+    public String getBabyimg() {
+        return babyimg;
+    }
+
+    public void setBabyimg(String babyimg) {
+        this.babyimg = babyimg;
+    }
 
     public String getKey() {
         return key;
@@ -69,6 +94,27 @@ public class Viewchild {
     public void setBabygender(String babygender) {
         this.babygender = babygender;
     }
+
+    String babyweight;
+
+    public Viewchild(String agemonth, String ageyear, String ageday, String babyimg, String key, String status, String babyname, String babyage, String babyweight, String babygender) {
+        this.agemonth = agemonth;
+        this.ageyear = ageyear;
+        this.ageday = ageday;
+        this.babyimg = babyimg;
+        this.key = key;
+        this.status = status;
+        this.babyname = babyname;
+        this.babyage = babyage;
+        this.babyweight = babyweight;
+        this.babygender = babygender;
+    }
+
+    String babygender;
+
+
+
+
 
 
 }

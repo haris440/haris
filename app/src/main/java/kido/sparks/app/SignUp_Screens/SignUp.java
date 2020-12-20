@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -33,22 +35,24 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import kido.sparks.app.Check_Network_Class;
 import kido.sparks.app.Parent_Panel.Parent_Home;
 import kido.sparks.app.R;
+import kido.sparks.app.SignIn_Screens.SignIn;
 
 public class SignUp extends AppCompatActivity {
     EditText ed_name, ed_email, ed_pass;
     Check_Network_Class cn;
     private FirebaseAuth mAuth;
     private DatabaseReference refregisterparent;
-    private ProgressBar mProgressBar;
+
     TextView btn;
 
-
+    private ProgressBar mProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,5 +197,12 @@ public class SignUp extends AppCompatActivity {
 
 
     }
+    public void funsignin(View view)
+    {
+        Intent intent=new Intent(SignUp.this, SignIn.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 }

@@ -11,12 +11,21 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Parent_Panel.View_Child"></activity>
-        <activity android:name=".Parent_Panel.Add_Children" />
-        <activity android:name=".Parent_Panel.Parent_Home" />
-        <activity android:name=".SignIn_Screens.SignIn" />
-        <activity android:name=".SignUp_Screens.SignUp" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".Parent_Panel.Edit_Children"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".Parent_Panel.View_Child"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Parent_Panel.Add_Children"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Parent_Panel.Parent_Home"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SignIn_Screens.SignIn"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SignUp_Screens.SignUp"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

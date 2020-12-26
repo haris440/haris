@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Parent_Panel.Add_Children">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <LinearLayout
+
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -14,6 +14,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/appbar_shape"
+        android:backgroundTint="@color/pink"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +34,7 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -57,67 +59,71 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="60dp"
                     android:id="@+id/babyimage"
-                    android:onClick="funpickimage"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/babyblue"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
-               />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:onClick="funpickimage"
+                    android:src="@drawable/babyblue" />
+
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="uplaod image"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/blue"
-                    android:textSize="8dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginTop="4dp"
+                    android:text="uplaod image"
+                    android:textColor="@color/blue"
+                    android:textSize="8dp" />
+
                 <EditText
                     android:id="@+id/c_name"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/editext_shape"
                     android:backgroundTint="@color/black"
                     android:ems="10"
-                    android:textSize="14dp"
                     android:hint="Enter Baby Name"
                     android:inputType="textPersonName"
-                    android:textColor="@color/black" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:backgroundTint="@color/black"
-    android:layout_marginTop="20dp"
-    android:background="@drawable/editext_shape"
-    android:layout_height="50dp">
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
-</LinearLayout>
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_height="50dp"
-                    android:onClick="opendatedailog"
-                    android:backgroundTint="@color/black"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
                     android:background="@drawable/editext_shape"
-                   >
+                    android:backgroundTint="@color/black">
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.502"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.498" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/editext_shape"
+                    android:backgroundTint="@color/black"
+                    android:onClick="opendatedailog">
+
                     <TextView
                         android:id="@+id/c_age"
                         android:layout_width="match_parent"
@@ -127,22 +133,23 @@
                         android:text="Select Baby Birth Date"
                         android:textColor="@color/black" />
                 </LinearLayout>
+
                 <EditText
                     android:id="@+id/c_weight"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
-                    android:textSize="14dp"
-                    android:maxLength="5"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/editext_shape"
                     android:backgroundTint="@color/black"
                     android:ems="10"
                     android:hint="Enter Baby Weight (eg 3.1 kg )"
                     android:inputType="numberDecimal"
-                    android:textColor="@color/black" />
+                    android:maxLength="5"
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.cardview.widget.CardView>
@@ -150,17 +157,46 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="60dp"
+        android:layout_width="80dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/buttonshape"
         android:backgroundTint="#00C853"
         android:fontFamily="@font/allerta_stencil"
         android:gravity="center"
-        android:onClick="fun_add"
-        android:text="Add"
+        android:onClick="fun_edit"
+        android:text="Update"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/cardView2" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/buttonshape"
+        android:backgroundTint="#FFC107"
+        android:fontFamily="@font/allerta_stencil"
+        android:gravity="center"
+        android:onClick="fun_cancel"
+        android:text="Cancel"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView44"
+        app:layout_constraintStart_toEndOf="@+id/textView3" />
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/buttonshape"
+        android:backgroundTint="#F44336"
+        android:fontFamily="@font/allerta_stencil"
+        android:gravity="center"
+        android:onClick="fun_delete"
+        android:text="Delete"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cardView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

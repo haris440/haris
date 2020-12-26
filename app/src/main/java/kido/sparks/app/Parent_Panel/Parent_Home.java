@@ -48,6 +48,7 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_parent__home);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         mAuth = FirebaseAuth.getInstance();
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
@@ -59,7 +60,7 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
         empty = findViewById(R.id.empty);
 
         refdata = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs");
-
+        refdata.keepSynced(true);
         GetChildList();
 
     }
@@ -147,5 +148,13 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
         Intent intent=new Intent(Parent_Home.this,View_Child.class);
         intent.putExtra("list", viewChildren.get(position));
         startActivity(intent);
+    }
+
+    @Override
+    public void OnrecylerListenerEdit(int position, List<Viewchild> viewChildren) {
+        Intent intent=new Intent(Parent_Home.this,Edit_Children.class);
+        intent.putExtra("list", viewChildren.get(position));
+        startActivity(intent);
+        finish();
     }
 }

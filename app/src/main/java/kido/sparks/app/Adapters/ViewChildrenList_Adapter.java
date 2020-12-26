@@ -37,9 +37,14 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
     public void onBindViewHolder(@NonNull Viewholder_Child holder, int position) {
         holder.name.setText("" + vlist.get(position).getBabyname());
         holder.age.setText(""+vlist.get(position).getBabyage());
-        holder.weight.setText(""+vlist.get(position).getBabyweight());
+        holder.weight.setText(""+vlist.get(position).getBabyweight()+" kg");
         holder.gender.setText(""+vlist.get(position).getBabygender());
-
+holder.imgedit.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        holder.mOnrecylerListener1.OnrecylerListenerEdit(position,vlist);
+    }
+});
 
             Glide.with(holder.itemView).asDrawable().centerCrop().load(""+vlist.get(position).getBabyimg()).into(holder.img);
 
@@ -49,11 +54,11 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
         }
         else
         {
-
             holder.name.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
             holder.age.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
             holder.weight.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
             holder.gender .setTextColor(holder.itemView.getResources().getColor(R.color.pink));
+            holder.imgedit.setColorFilter(holder.itemView.getResources().getColor(R.color.pink));
         }
 
     }
@@ -73,7 +78,7 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
 
     public class Viewholder_Child extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name,age,weight,gender;
-        ImageView img;
+        ImageView img,imgedit;
         OnrecylerListener mOnrecylerListener1;
         public Viewholder_Child(@NonNull View itemView, OnrecylerListener mOnrecylerListener) {
             super(itemView);
@@ -82,6 +87,7 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
             weight=itemView.findViewById(R.id.weight);
             gender=itemView.findViewById(R.id.gender);
             img=itemView.findViewById(R.id.imageView);
+            imgedit=itemView.findViewById(R.id.imgedit);
             mOnrecylerListener1 = mOnrecylerListener;
 
             itemView.setOnClickListener(this);
@@ -94,5 +100,7 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
     }
     public interface OnrecylerListener {
         void OnrecylerListener(int position, List<Viewchild> viewChildren);
+        void OnrecylerListenerEdit(int position, List<Viewchild> viewChildren);
     }
+
 }

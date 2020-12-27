@@ -95,4 +95,12 @@ CalculateBabyAge();
         Log.e("dsad","Sir James Gosling's age : "+ totaldays);
         Log.e("dsad","Sir James Gosling's age : "+ ageInMonths);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        pp=(Viewchild) getActivity().getIntent().getSerializableExtra("list");
+        babyage=getActivity().findViewById(R.id.babyage);
+        CalculateBabyAge();
+    }
 }

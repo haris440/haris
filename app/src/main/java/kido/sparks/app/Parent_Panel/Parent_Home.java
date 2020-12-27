@@ -22,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +47,8 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_parent__home);
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
+
         mAuth = FirebaseAuth.getInstance();
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
@@ -145,9 +145,10 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
 
     @Override
     public void OnrecylerListener(int position, List<Viewchild> viewChildren) {
-        Intent intent=new Intent(Parent_Home.this,View_Child.class);
+        Intent intent=new Intent(Parent_Home.this, Child_Panel_Activity.class);
         intent.putExtra("list", viewChildren.get(position));
         startActivity(intent);
+
     }
 
     @Override
@@ -156,5 +157,10 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
         intent.putExtra("list", viewChildren.get(position));
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }

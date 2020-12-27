@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:iconTint="@color/blue"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/navigation_activities"
+        android:iconTint="@color/blue"
+        android:icon="@drawable/ic_baseline_local_activity_24"
+        android:title="Activities" />
+
+
+    <item
+        android:id="@+id/navigation_vaccine"
+        android:iconTint="@color/blue"
+        android:icon="@drawable/vaccine"
+        android:title="Vaccine" />
+
+    <item
+        android:id="@+id/navigation_kitchen"
+        android:icon="@drawable/ic_baseline_kitchen_24"
+        android:title="Kitchen" />
+    <item
+        android:id="@+id/navigation_reminder"
+        android:iconTint="@color/blue"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="Reminders" />
+</menu>

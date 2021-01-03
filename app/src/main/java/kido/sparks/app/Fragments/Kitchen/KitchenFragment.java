@@ -16,7 +16,7 @@ import kido.sparks.app.R;
 
 public class KitchenFragment extends Fragment {
 
-    private KitchenViewModel mViewModel;
+
 
     public static KitchenFragment newInstance() {
         return new KitchenFragment();
@@ -31,7 +31,7 @@ public class KitchenFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(KitchenViewModel.class);
+
         // TODO: Use the ViewModel
     }
 

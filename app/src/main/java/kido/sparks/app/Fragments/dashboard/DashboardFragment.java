@@ -14,56 +14,47 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import kido.sparks.app.Adapters.Counter_Adapter;
+import kido.sparks.app.Adapters.Milestone_Dashboard;
+import kido.sparks.app.Adapters.ViewChildrenList_Adapter;
+import kido.sparks.app.Model.Milestone;
 import kido.sparks.app.Model.Viewchild;
 import kido.sparks.app.R;
 
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements Milestone_Dashboard.OnrecylerListener,Counter_Adapter.OnrecylerListenercounter{
 
-    private DashboardViewModel dashboardViewModel;
+
     TextView babyname,babyage;
+    Milestone_Dashboard milestone_dashboard;
+    Counter_Adapter  counter_adapter;
+    RecyclerView recyclerView,recyclerView2;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.activity_view__child, container, false);
         return root;
     }
     Viewchild pp;
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
 
-        pp=(Viewchild) getActivity().getIntent().getSerializableExtra("list");
-        babyage=getActivity().findViewById(R.id.babyage);
-//
-//        if (pp.getBabygender().toString().equals("Female")){
-//            getActivity().setContentView(R.layout.activity_view__child2);
-//        }
-//        else{
-//            getActivity().setContentView(R.layout.activity_view__child);
-//        }
-
-//        final Calendar cldr = Calendar.getInstance();
-//        int day = cldr.get(Calendar.DAY_OF_MONTH);
-//        int month = cldr.get(Calendar.MONTH);
-//        int year = cldr.get(Calendar.YEAR);
-//        babyage.setText(""+getDaysBetweenDates(""+pp.getBabyage().trim(),"27/12/2020")+" Days");
-CalculateBabyAge();
-    }
 
     public  void CalculateBabyAge()
-    {
-        babyage=getActivity().findViewById(R.id.babyage);
+     {
+
         int yearr= Integer.parseInt(pp.getAgeyear());
         int month= Integer.parseInt(pp.getAgemonth());
         int day= Integer.parseInt(pp.getAgeday());
@@ -81,26 +72,64 @@ CalculateBabyAge();
             babyage.setText(""+pp.getBabyname()+"is " +totaldays+" day old");
         else
             babyage.setText(""+pp.getBabyname()+"is " +totaldays+" days old");
-
+            Log.e("dsad","Number of months since James gosling born : " + monthsDiff);
+            Log.e("dsad","Sir James Gosling's age : "+ totaldays);
+            Log.e("dsad","Sir James Gosling's age : "+ ageInMonths);
 
         }else {
             if(monthsDiff==1)
                 babyage.setText(""+pp.getBabyname()+" is 1"+" month" );
             else
                 babyage.setText(""+pp.getBabyname()+" is "+ ageInMonths+" months" );
-
+            Log.e("dsad","Number of months since James gosling born : " + monthsDiff);
+            Log.e("dsad","Sir James Gosling's age : "+ totaldays);
+            Log.e("dsad","Sir James Gosling's age : "+ ageInMonths);
 
         }
-        Log.e("dsad","Number of months since James gosling born : " + monthsDiff);
-        Log.e("dsad","Sir James Gosling's age : "+ totaldays);
-        Log.e("dsad","Sir James Gosling's age : "+ ageInMonths);
+
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         pp=(Viewchild) getActivity().getIntent().getSerializableExtra("list");
-        babyage=getActivity().findViewById(R.id.babyage);
+        babyage=view.findViewById(R.id.babyage);
+        List<Milestone> list = new ArrayList<>();
+        list.add(new Milestone("data from month 1","a","a"));
+        list.add(new Milestone("data from month1","a","a"));
+        list.add(new Milestone("data from month1","a","a"));
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyler);
+        recyclerView2 = (RecyclerView) view.findViewById(R.id.recylercounter);
+
+        milestone_dashboard = new Milestone_Dashboard(this::OnrecylerListener);
+        counter_adapter=new Counter_Adapter(this::OnrecylerListenercounter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(milestone_dashboard);
+
+        recyclerView2.setHasFixedSize(true);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView2.setLayoutManager(mLayoutManager);
+        recyclerView2.setAdapter(counter_adapter);
+        milestone_dashboard.setlist(list);
         CalculateBabyAge();
+    }
+
+    @Override
+    public void OnrecylerListener(int position, List<Milestone> viewChildren) {
+
+    }
+
+    @Override
+    public void OnrecylerListenercounter(int position) {
+        List<Milestone> list = new ArrayList<>();
+        int pos=position+1;
+        list.add(new Milestone("data from month "+pos,"a","a"));
+        list.add(new Milestone("data from month "+pos,"a","a"));
+        list.add(new Milestone("data from month "+pos,"a","a"));
+counter_adapter.setlist(position);
+        milestone_dashboard.setlist(list);
     }
 }

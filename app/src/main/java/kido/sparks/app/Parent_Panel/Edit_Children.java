@@ -1,5 +1,6 @@
 package kido.sparks.app.Parent_Panel;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -203,7 +205,66 @@ public class Edit_Children extends AppCompatActivity {
     }
 
     public void opendatedailog(View view) {
-        getdate();
+        getlast3yeardate();
+    }  private String strDateOfBirth;
+    private String strNewDay;
+    private String strNewMonth;
+
+    void getlast3yeardate()
+    {
+
+        final Calendar calendar = Calendar.getInstance();
+        int   mYear = calendar.get(Calendar.YEAR);
+        int   mDay = calendar.get(Calendar.DATE);
+        int    mMonth = calendar.get(Calendar.MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @SuppressLint("LongLogTag")
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                strDateOfBirth = (month + 1) + "-" + dayOfMonth + "-" + year;
+
+                //********************** check and set date with append 0 at starting***************************
+                if (dayOfMonth < 10) {
+                    strNewDay = "0" + dayOfMonth;
+                } else {
+                    strNewDay = dayOfMonth + "";
+                }
+                if (month + 1 < 10) {
+                    strNewMonth = "0" + (month + 1);
+                } else {
+                    strNewMonth = (month + 1) + "";
+                }
+
+                Log.e("strnewDay *****************", strNewDay + "");
+                Log.e("strNewMonth *****************", strNewMonth + "");
+
+                //    etDateOfBirth.setText(dayOfMonth + " / " + (month + 1) + " / " + year);
+                c_age.setText(strNewDay + " / " + strNewMonth + " / " + year);
+
+                Log.e("strDateOfBirth *******************", strDateOfBirth + "");
+
+            }
+        }, mYear, mMonth, mDay);
+
+        datePickerDialog.show();
+
+        //*************** input date of birth must be greater than or equal to 18 ************************************
+
+        Calendar maxDate = Calendar.getInstance();
+        maxDate.set(Calendar.DAY_OF_MONTH, mDay);
+        maxDate.set(Calendar.MONTH, mMonth);
+        maxDate.set(Calendar.YEAR, mYear -3);
+
+        Calendar maxDate2 = Calendar.getInstance();
+        maxDate2.set(Calendar.DAY_OF_MONTH, mDay);
+        maxDate2.set(Calendar.MONTH, mMonth);
+        maxDate2.set(Calendar.YEAR, mYear );
+        datePickerDialog.getDatePicker().setMinDate(maxDate.getTimeInMillis());
+        datePickerDialog.getDatePicker().setMaxDate(maxDate2.getTimeInMillis());
+        //*************** input date of birth must be less than today date ************************************
+        //   datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
     }
 
     public void funpickimage

@@ -3,6 +3,7 @@ package kido.sparks.app.Parent_Panel;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,11 +30,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -43,11 +40,12 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import kido.sparks.app.Check_Network_Class;
-import kido.sparks.app.Model.Viewchild;
 import kido.sparks.app.R;
 
 public class Add_Children extends AppCompatActivity {
@@ -66,6 +64,10 @@ ImageView babyimage;
 
     private StorageReference image_path;
     private Uri resultUri;
+    private String strDateOfBirth;
+    private String strNewDay;
+    private String strNewMonth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -170,15 +172,75 @@ uplaodimg();
                         babyday= String.valueOf(dayOfMonth);
                         babymonth= String.valueOf(monthOfYear);
                         babyyear= String.valueOf(year);
-
+CalculateBabyAge(year,monthOfYear,dayOfMonth);
                         c_age.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                     }
                 }, year, month, day);
         picker.show();
+
     }
 
+void getlast3yeardate()
+{
+
+    final Calendar calendar = Calendar.getInstance();
+ int   mYear = calendar.get(Calendar.YEAR);
+ int   mDay = calendar.get(Calendar.DATE);
+int    mMonth = calendar.get(Calendar.MONTH);
+
+    DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+        @SuppressLint("LongLogTag")
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+      strDateOfBirth = (month + 1) + "-" + dayOfMonth + "-" + year;
+
+            //********************** check and set date with append 0 at starting***************************
+            if (dayOfMonth < 10) {
+                strNewDay = "0" + dayOfMonth;
+            } else {
+                strNewDay = dayOfMonth + "";
+            }
+            if (month + 1 < 10) {
+                strNewMonth = "0" + (month + 1);
+            } else {
+                strNewMonth = (month + 1) + "";
+            }
+
+            Log.e("strnewDay *****************", strNewDay + "");
+            Log.e("strNewMonth *****************", strNewMonth + "");
+
+            //    etDateOfBirth.setText(dayOfMonth + " / " + (month + 1) + " / " + year);
+            c_age.setText(strNewDay + " / " + strNewMonth + " / " + year);
+
+            Log.e("strDateOfBirth *******************", strDateOfBirth + "");
+
+        }
+    }, mYear, mMonth, mDay);
+
+    datePickerDialog.show();
+
+    //*************** input date of birth must be greater than or equal to 18 ************************************
+
+    Calendar maxDate = Calendar.getInstance();
+    maxDate.set(Calendar.DAY_OF_MONTH, mDay);
+    maxDate.set(Calendar.MONTH, mMonth);
+    maxDate.set(Calendar.YEAR, mYear -3);
+
+    Calendar maxDate2 = Calendar.getInstance();
+    maxDate2.set(Calendar.DAY_OF_MONTH, mDay);
+    maxDate2.set(Calendar.MONTH, mMonth);
+    maxDate2.set(Calendar.YEAR, mYear );
+    datePickerDialog.getDatePicker().setMinDate(maxDate.getTimeInMillis());
+    datePickerDialog.getDatePicker().setMaxDate(maxDate2.getTimeInMillis());
+    //*************** input date of birth must be less than today date ************************************
+    //   datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+}
+
+
     public void opendatedailog(View view) {
-        getdate();
+      //  getdate();
+     getlast3yeardate();
     }
     public void funpickimage
             (View view) {
@@ -248,7 +310,7 @@ uplaodimg();
                                   c_age.setText("Select Baby Birth Date");
 
                                     btn.setVisibility(View.VISIBLE);
-
+finish();
 
                                 }
                             });
@@ -313,6 +375,29 @@ uplaodimg();
             Glide.with(Add_Children.this).asDrawable().centerCrop().load(dd).into(babyimage);
 
         }
+
+    }
+    public  void CalculateBabyAge(int year, int monthOfYear, int dayOfMonth)
+    {
+
+        int yearr= year;
+        int month= monthOfYear;
+        int day= dayOfMonth;
+        Calendar birthDay = new GregorianCalendar(yearr, month, day);
+        Calendar today = new GregorianCalendar();
+        today.setTime(new Date());
+        int yearsInBetween = today.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
+        int monthsDiff = today.get(Calendar.MONTH) - birthDay.get(Calendar.MONTH);
+        int totaldays = today.get(Calendar.DAY_OF_YEAR) - birthDay.get(Calendar.DAY_OF_YEAR);
+        long ageInMonths = yearsInBetween*12 + monthsDiff;
+        long age = yearsInBetween;
+
+            Log.e("dsad","Number of months since James gosling born : " + monthsDiff);
+            Log.e("dsad","Sir James Gosling's age : "+ totaldays);
+            Log.e("dsad","Sir James Gosling's age : "+ ageInMonths);
+
+
+
 
     }
 }

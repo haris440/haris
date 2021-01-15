@@ -13,7 +13,7 @@ import kido.sparks.app.R;
 
 public class Counter_Adapter extends RecyclerView.Adapter<Counter_Adapter.ViewHolder_Counter> {
     OnrecylerListenercounter mOnrecylerListener;
-
+//
     @NonNull
     @Override
     public ViewHolder_Counter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

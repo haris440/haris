@@ -50,11 +50,13 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
 
 
         mAuth = FirebaseAuth.getInstance();
+
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-
         adapter = new ViewChildrenList_Adapter(this);
+
         recyclerView.setHasFixedSize(true);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         empty = findViewById(R.id.empty);
@@ -67,26 +69,25 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
 
     public void GetChildList() {
 
-
         refdata.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
-                if (snapshot.exists()) {
+                if (snapshot.exists())
+                {
                     empty.setVisibility(View.INVISIBLE);
                     for (DataSnapshot ds1 : snapshot.getChildren()) {
-                        Log.e("asasa", "" + ds1.getValue());
-                        Viewchild newComment = ds1.getValue(Viewchild.class);
-                        Log.e("sss", "" + newComment.getBabygender() + newComment.getBabyweight());
-                        list.add(newComment);
+                        Viewchild childdata = ds1.getValue(Viewchild.class);
+                        list.add(childdata);
                     }
                     mProgressBar.setVisibility(View.GONE);
                     adapter.setlist(list);
 
 
-                } else {
+                }
+                else {
                     list.clear();
-                    Toast.makeText(Parent_Home.this, "Add childens", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Parent_Home.this, "Add childrens", Toast.LENGTH_SHORT).show();
                     mProgressBar.setVisibility(View.GONE);
                     empty.setVisibility(View.VISIBLE);
                     adapter.setlist(list);

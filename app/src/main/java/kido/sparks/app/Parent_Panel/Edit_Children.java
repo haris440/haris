@@ -73,6 +73,7 @@ public class Edit_Children extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         viewchild = (Viewchild) getIntent().getSerializableExtra("list");
+
         if (viewchild.getBabygender().toString().equals("Male")) {
             setContentView(R.layout.activity_edit__children);
         } else {
@@ -223,7 +224,9 @@ public class Edit_Children extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 strDateOfBirth = (month + 1) + "-" + dayOfMonth + "-" + year;
-
+                babyday= String.valueOf(dayOfMonth);
+                babymonth= String.valueOf(month);
+                babyyear= String.valueOf(year);
                 //********************** check and set date with append 0 at starting***************************
                 if (dayOfMonth < 10) {
                     strNewDay = "0" + dayOfMonth;

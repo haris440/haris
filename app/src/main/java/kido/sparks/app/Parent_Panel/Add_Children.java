@@ -158,33 +158,13 @@ uplaodimg();
     String babyyear="";
     String babymonth="";
     String babyday="";
-    public void getdate()
-    {
-        final Calendar cldr = Calendar.getInstance();
-        int day = cldr.get(Calendar.DAY_OF_MONTH);
-        int month = cldr.get(Calendar.MONTH);
-        int year = cldr.get(Calendar.YEAR);
-        // date picker dialog
-        picker = new DatePickerDialog(Add_Children.this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        babyday= String.valueOf(dayOfMonth);
-                        babymonth= String.valueOf(monthOfYear);
-                        babyyear= String.valueOf(year);
-CalculateBabyAge(year,monthOfYear,dayOfMonth);
-                        c_age.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                    }
-                }, year, month, day);
-        picker.show();
 
-    }
 
 void getlast3yeardate()
 {
 
     final Calendar calendar = Calendar.getInstance();
- int   mYear = calendar.get(Calendar.YEAR);
+    int   mYear = calendar.get(Calendar.YEAR);
  int   mDay = calendar.get(Calendar.DATE);
 int    mMonth = calendar.get(Calendar.MONTH);
 
@@ -192,8 +172,10 @@ int    mMonth = calendar.get(Calendar.MONTH);
         @SuppressLint("LongLogTag")
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-      strDateOfBirth = (month + 1) + "-" + dayOfMonth + "-" + year;
-
+        strDateOfBirth = (month + 1) + "-" + dayOfMonth + "-" + year;
+            babyday= String.valueOf(dayOfMonth);
+            babymonth= String.valueOf(month);
+            babyyear= String.valueOf(year);
             //********************** check and set date with append 0 at starting***************************
             if (dayOfMonth < 10) {
                 strNewDay = "0" + dayOfMonth;
@@ -221,16 +203,16 @@ int    mMonth = calendar.get(Calendar.MONTH);
 
     //*************** input date of birth must be greater than or equal to 18 ************************************
 
-    Calendar maxDate = Calendar.getInstance();
-    maxDate.set(Calendar.DAY_OF_MONTH, mDay);
-    maxDate.set(Calendar.MONTH, mMonth);
-    maxDate.set(Calendar.YEAR, mYear -3);
+    Calendar mindate = Calendar.getInstance();
+    mindate.set(Calendar.DAY_OF_MONTH, mDay);
+    mindate.set(Calendar.MONTH, mMonth);
+    mindate.set(Calendar.YEAR, mYear -3);
 
     Calendar maxDate2 = Calendar.getInstance();
     maxDate2.set(Calendar.DAY_OF_MONTH, mDay);
     maxDate2.set(Calendar.MONTH, mMonth);
     maxDate2.set(Calendar.YEAR, mYear );
-    datePickerDialog.getDatePicker().setMinDate(maxDate.getTimeInMillis());
+    datePickerDialog.getDatePicker().setMinDate(mindate.getTimeInMillis());
     datePickerDialog.getDatePicker().setMaxDate(maxDate2.getTimeInMillis());
     //*************** input date of birth must be less than today date ************************************
     //   datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());

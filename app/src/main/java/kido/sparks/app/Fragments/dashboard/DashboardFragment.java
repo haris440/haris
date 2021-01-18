@@ -5,44 +5,32 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import kido.sparks.app.Adapters.Counter_Adapter;
-import kido.sparks.app.Adapters.Milestone_Dashboard;
-import kido.sparks.app.Adapters.ViewChildrenList_Adapter;
+import kido.sparks.app.Adapters.Milestone_Adapter;
 import kido.sparks.app.Model.Milestone;
 import kido.sparks.app.Model.Viewchild;
 import kido.sparks.app.R;
 
 
-public class DashboardFragment extends Fragment implements Milestone_Dashboard.OnrecylerListener,Counter_Adapter.OnrecylerListenercounter{
+public class DashboardFragment extends Fragment implements Milestone_Adapter.OnrecylerListener,Counter_Adapter.OnrecylerListenercounter{
 
 
     TextView babyname,babyage;
-    Milestone_Dashboard milestone_dashboard;
+    Milestone_Adapter milestone_adapter;
     Counter_Adapter  counter_adapter;
     RecyclerView recyclerView,recyclerView2;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -102,18 +90,18 @@ public class DashboardFragment extends Fragment implements Milestone_Dashboard.O
         recyclerView = (RecyclerView) view.findViewById(R.id.recyler);
         recyclerView2 = (RecyclerView) view.findViewById(R.id.recylercounter);
 
-        milestone_dashboard = new Milestone_Dashboard(this::OnrecylerListener);
+        milestone_adapter = new Milestone_Adapter(this::OnrecylerListener);
         counter_adapter=new Counter_Adapter(this::OnrecylerListenercounter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(milestone_dashboard);
+        recyclerView.setAdapter(milestone_adapter);
 
         recyclerView2.setHasFixedSize(true);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView2.setLayoutManager(mLayoutManager);
         recyclerView2.setAdapter(counter_adapter);
-        milestone_dashboard.setlist(list);
+        milestone_adapter.setlist(list);
         CalculateBabyAge();
     }
 
@@ -129,7 +117,7 @@ public class DashboardFragment extends Fragment implements Milestone_Dashboard.O
         list.add(new Milestone("data from month "+pos,"a","a"));
         list.add(new Milestone("data from month "+pos,"a","a"));
         list.add(new Milestone("data from month "+pos,"a","a"));
-counter_adapter.setlist(position);
-        milestone_dashboard.setlist(list);
+        counter_adapter.setlist(position);
+        milestone_adapter.setlist(list);
     }
 }

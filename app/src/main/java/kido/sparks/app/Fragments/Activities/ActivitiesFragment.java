@@ -28,6 +28,5 @@ public class ActivitiesFragment extends Fragment {
         // TODO: Use the ViewModel
 
 
-
     }
 }

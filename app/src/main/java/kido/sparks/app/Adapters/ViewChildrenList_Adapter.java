@@ -24,6 +24,7 @@ import kido.sparks.app.R;
 public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenList_Adapter.Viewholder_Child> {
     OnrecylerListener  mOnrecylerListener;
    List<Viewchild> vlist=new ArrayList<>();
+
     @NonNull
     @Override
     public Viewholder_Child onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,12 +41,13 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
     @Override
     public void onBindViewHolder(@NonNull Viewholder_Child holder, int position) {
         holder.name.setText("" + vlist.get(position).getBabyname());
-        holder.age.setText(""+vlist.get(position).getBabyage());
         holder.age.setText(""+CalculateBabyAge(vlist.get(position).getAgeyear(),vlist.get(position).getAgemonth(),vlist.get(position).getAgemonth()));
         holder.weight.setText(""+vlist.get(position).getBabyweight()+" kg");
         holder.gender.setText(""+vlist.get(position).getBabygender());
 
-holder.imgedit.setOnClickListener(new View.OnClickListener() {
+
+
+        holder.imgedit.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         holder.mOnrecylerListener1.OnrecylerListenerEdit(position,vlist);
@@ -75,7 +77,6 @@ holder.imgedit.setOnClickListener(new View.OnClickListener() {
     }
     public void setlist( List<Viewchild> vlist)
     {
-
         this.vlist=vlist;
         notifyDataSetChanged();
 
@@ -94,8 +95,8 @@ holder.imgedit.setOnClickListener(new View.OnClickListener() {
             gender=itemView.findViewById(R.id.gender);
             img=itemView.findViewById(R.id.imageView);
             imgedit=itemView.findViewById(R.id.imgedit);
-            mOnrecylerListener1 = mOnrecylerListener;
 
+            mOnrecylerListener1 = mOnrecylerListener;
             itemView.setOnClickListener(this);
         }
 
@@ -105,9 +106,12 @@ holder.imgedit.setOnClickListener(new View.OnClickListener() {
         }
     }
     public interface OnrecylerListener {
+
         void OnrecylerListener(int position, List<Viewchild> viewChildren);
         void OnrecylerListenerEdit(int position, List<Viewchild> viewChildren);
     }
+
+
     public  String CalculateBabyAge(String yearrr,String monthh ,String dayy)
     {
         int yearr= Integer.parseInt(yearrr);
@@ -130,7 +134,8 @@ holder.imgedit.setOnClickListener(new View.OnClickListener() {
 
 
 
-        }else {
+        }
+        else {
             if(monthsDiff==1)
                return  ""+"1 "+" month old" ;
             else

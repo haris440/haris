@@ -185,25 +185,7 @@ public class Edit_Children extends AppCompatActivity {
     String babymonth = "";
     String babyday = "";
 
-    public void getdate() {
-        final Calendar cldr = Calendar.getInstance();
-        int day = cldr.get(Calendar.DAY_OF_MONTH);
-        int month = cldr.get(Calendar.MONTH);
-        int year = cldr.get(Calendar.YEAR);
-        // date picker dialog
-        picker = new DatePickerDialog(Edit_Children.this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        babyday = String.valueOf(dayOfMonth);
-                        babymonth = String.valueOf(monthOfYear);
-                        babyyear = String.valueOf(year);
 
-                        c_age.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                    }
-                }, year, month, day);
-        picker.show();
-    }
 
     public void opendatedailog(View view) {
         getlast3yeardate();

@@ -82,6 +82,7 @@ public class DashboardFragment extends Fragment implements Milestone_Adapter.Onr
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         pp=(Viewchild) getActivity().getIntent().getSerializableExtra("list");
+
         babyage=view.findViewById(R.id.babyage);
         List<Milestone> list = new ArrayList<>();
         list.add(new Milestone("data from month 1","a","a"));

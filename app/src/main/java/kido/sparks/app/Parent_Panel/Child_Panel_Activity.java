@@ -1,5 +1,7 @@
 package kido.sparks.app.Parent_Panel;
 
+import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -10,7 +12,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,6 +35,8 @@ public class Child_Panel_Activity extends AppCompatActivity {
     TextView babyname,babyage;
     ImageView babyimg;
     Viewchild pp;
+    ConstraintLayout constraintLayout;
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +44,10 @@ public class Child_Panel_Activity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        constraintLayout=findViewById(R.id.constraintLayout);
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
+
 //        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
 //           R.id.navigation_dashboard,     R.id.navigation_activities,R.id.navigation_vaccine,R.id.navigation_kitchen, R.id.navigation_reminder)
 //                .build();
@@ -47,9 +56,19 @@ public class Child_Panel_Activity extends AppCompatActivity {
         pp=(Viewchild) getIntent().getSerializableExtra("list");
         babyname=findViewById(R.id.babyname);
         babyimg= findViewById(R.id.babyimg);
-
         babyname.setText(""+pp.getBabyname());
         Glide.with(this).asDrawable().centerCrop().load(""+pp.getBabyimg()).into(babyimg);
+if (pp.getBabygender().contains("Male"))
+{
+    constraintLayout.setBackgroundColor(getResources().getColor(R.color.blue));
+    navView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
+    navView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
+}
+else{
+    constraintLayout.setBackgroundColor(getResources().getColor(R.color.pink));
+    navView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.pink)));
+    navView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.pink)));
+}
 //        CalculateBabyAge();
     }
     public static final String DATE_FORMAT = "dd/mm/yyyy";

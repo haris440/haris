@@ -344,6 +344,8 @@ finish();
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1 && resultCode == RESULT_OK) {
+
+
             final Uri imageUri = data.getData();
             resultUri = imageUri;
            babyimage.setImageURI(resultUri);
@@ -353,7 +355,9 @@ finish();
             babyimage.setBackground(null);
             babyimage.setBackgroundResource(0);
             babyimage.setImageResource(0);
+
             babyimage.setImageBitmap(null);
+
             Glide.with(Add_Children.this).asDrawable().centerCrop().load(dd).into(babyimage);
 
         }

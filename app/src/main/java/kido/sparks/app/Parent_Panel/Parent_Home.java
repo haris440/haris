@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import kido.sparks.app.Adapters.ViewChildrenList_Adapter;
+import kido.sparks.app.Firestoretest;
 import kido.sparks.app.Model.Viewchild;
 import kido.sparks.app.R;
 import kido.sparks.app.SignIn_Screens.SignIn;
@@ -162,6 +163,8 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
 
     @Override
     public void onBackPressed() {
+        Intent intent=new Intent(Parent_Home.this, Firestoretest.class);
 
+        startActivity(intent);
     }
 }

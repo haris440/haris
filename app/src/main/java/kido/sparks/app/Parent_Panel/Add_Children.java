@@ -133,10 +133,18 @@ ImageView babyimage;
             hashMap.put("babygender", "" + genderspinner.getSelectedItem().toString());
             hashMap.put("babyimg", ""+ genderspinner.getSelectedItem().toString());
            refaddchild.updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+
                @Override
                public void onComplete(@NonNull Task task) {
+                DatabaseReference   refaddmilesstatus;
+           for (int i=1; i<=36; i++)
+           {
+                refaddmilesstatus= FirebaseDatabase.getInstance().getReference().child("Parents").child(""+mAuth.getCurrentUser().getUid().toString()).child("Childs").child(""+refaddchild.getKey()).child("milestones").child("month"+i);
+               HashMap hashMap2 = new HashMap();
+               hashMap2.put("status",false);
+               refaddmilesstatus.updateChildren(hashMap2);
 
-         //          Toast.makeText(Add_Children.this, "Added Successfully , Want to Add More?", Toast.LENGTH_LONG).show();
+           }
                }
            }).addOnFailureListener(new OnFailureListener() {
                @Override

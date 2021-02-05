@@ -33,7 +33,7 @@ public class Milestone_Adapter extends RecyclerView.Adapter<Milestone_Adapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder_Milestone_Dashboard holder, int position) {
 
-        holder.checkBox.setText(""+vlist.get(position).getText());
+        holder.checkBox.setText(""+vlist.get(position).getName());
       //  holder.checkBox.setChecked(true);
 //
 //holder.imgedit.setOnClickListener(new View.OnClickListener() {

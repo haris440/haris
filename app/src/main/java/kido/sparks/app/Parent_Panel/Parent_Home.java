@@ -55,9 +55,7 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         adapter = new ViewChildrenList_Adapter(this);
-
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         empty = findViewById(R.id.empty);

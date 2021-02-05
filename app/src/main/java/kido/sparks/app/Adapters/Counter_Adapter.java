@@ -34,7 +34,8 @@ public class Counter_Adapter extends RecyclerView.Adapter<Counter_Adapter.ViewHo
         holder.txtcounter.setText(""+pos);
         if(row_index==position){
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                holder.linearLayout.setBackgroundColor(holder.itemView.getResources().getColor(R.color.blue));
+                holder.linearLayout.setBackgroundColor(holder.itemView.getResources().getColor(R.color.grey));
+                holder.txtcounter.setTextColor(holder.itemView.getResources().getColor(R.color.white));
             };
 
         }
@@ -42,6 +43,7 @@ public class Counter_Adapter extends RecyclerView.Adapter<Counter_Adapter.ViewHo
         {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                 holder.linearLayout.setBackgroundColor(holder.itemView.getResources().getColor(R.color.white));
+                holder.txtcounter.setTextColor(holder.itemView.getResources().getColor(R.color.black));
             };
 
         }

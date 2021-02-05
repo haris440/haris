@@ -42,7 +42,7 @@ public class DashboardFragment extends Fragment implements Milestone_Adapter.Onr
 
     public  void CalculateBabyAge()
      {
-
+           long start=0;
         int yearr= Integer.parseInt(pp.getAgeyear());
         int month= Integer.parseInt(pp.getAgemonth());
         int day= Integer.parseInt(pp.getAgeday());
@@ -65,16 +65,23 @@ public class DashboardFragment extends Fragment implements Milestone_Adapter.Onr
             Log.e("dsad","Sir James Gosling's age : "+ ageInMonths);
 
         }else {
-            if(monthsDiff==1)
+            if(monthsDiff==1){
                 babyage.setText(""+pp.getBabyname()+" is 1"+" month" );
+                start= 1;}
             else
-                babyage.setText(""+pp.getBabyname()+" is "+ ageInMonths+" months" );
+            {  babyage.setText(""+pp.getBabyname()+" is "+ ageInMonths+" months" ); start=  ageInMonths;}
             Log.e("dsad","Number of months since James gosling born : " + monthsDiff);
             Log.e("dsad","Sir James Gosling's age : "+ totaldays);
             Log.e("dsad","Sir James Gosling's age : "+ ageInMonths);
 
         }
-
+         List<Milestone> list = new ArrayList<>();
+         int pos= (int) start;
+         list.add(new Milestone("data from month "+pos,"a","a"));
+         list.add(new Milestone("data from month "+pos,"a","a"));
+         list.add(new Milestone("data from month "+pos,"a","a"));
+         counter_adapter.setlist((int) start-1);
+         milestone_adapter.setlist(list);
 
     }
 

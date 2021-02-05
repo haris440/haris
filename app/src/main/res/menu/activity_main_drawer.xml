@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_viewchilds"
+            android:icon="@drawable/ic_baseline_streetview_24"
+            android:title="View Childs" />
+        <item
+            android:id="@+id/nav_pa"
+            android:icon="@drawable/ic_baseline_accessibility_24"
+            android:title="Physical Activities" />
+        <item
+            android:id="@+id/nav_ma"
+            android:icon="@drawable/ic_baseline_accessibility_24"
+            android:title="Mental Activities" />
+        <item
+            android:id="@+id/nav_roadmap"
+            android:icon="@drawable/ic_baseline_military_tech_24"
+            android:title="View Road Map" />
+        <item
+            android:id="@+id/nav_webcam"
+            android:icon="@drawable/webcam"
+            android:title="View WebCam" />
+    </group>
+
+    <item android:title="">
+        <menu>
+
+            <item
+                android:id="@+id/nav_rate"
+                android:icon="@drawable/ic_baseline_star_rate_24"
+                android:title="Rate" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_baseline_exit_to_app_24"
+                android:title="Exit" />
+        </menu>
+    </item>
+
+</menu>

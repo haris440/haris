@@ -165,6 +165,6 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
     public void onBackPressed() {
         Intent intent=new Intent(Parent_Home.this, Firestoretest.class);
 
-        startActivity(intent);
+     //   startActivity(intent);
     }
 }

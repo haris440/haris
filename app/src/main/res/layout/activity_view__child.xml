@@ -131,7 +131,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/allerta_stencil"
-                        android:text="Learn"
+                        android:text="Mental"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp" />
                 </androidx.cardview.widget.CardView>
@@ -151,7 +151,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/allerta_stencil"
-                        android:text="monitor"
+                        android:text="Physical"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp" />
                 </androidx.cardview.widget.CardView>

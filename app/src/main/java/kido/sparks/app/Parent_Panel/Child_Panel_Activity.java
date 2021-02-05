@@ -1,9 +1,12 @@
-package kido.sparks.app.Parent_Panel;
+  package kido.sparks.app.Parent_Panel;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -11,27 +14,28 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import kido.sparks.app.Model.Viewchild;
 import kido.sparks.app.R;
 
-public class Child_Panel_Activity extends AppCompatActivity {
+public class Child_Panel_Activity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     TextView babyname,babyage;
     ImageView babyimg;
     Viewchild pp;
@@ -43,9 +47,14 @@ public class Child_Panel_Activity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_nav);
         constraintLayout=findViewById(R.id.constraintLayout);
 
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view1);
+
+
+        navigationView.setNavigationItemSelectedListener(this);
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
 //        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -88,6 +97,54 @@ else{
     private static long getUnitBetweenDates(Date startDate, Date endDate, TimeUnit unit) {
         long timeDiff = endDate.getTime() - startDate.getTime();
         return unit.convert(timeDiff, TimeUnit.MILLISECONDS);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+
+        if (id == R.id.nav_viewchilds) {
+finish();
+
+
+        } else if (id == R.id.nav_pa) {
+
+
+
+
+        }  else if (id == R.id.nav_ma) {
+
+
+
+
+        }
+        else if (id == R.id.nav_roadmap) {
+
+
+                 }
+        else if (id == R.id.nav_rate) {
+            final String appPackageName = getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+        }
+        else if (id == R.id.nav_exit) {
+
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+    public  void nvabtn(View view)
+    {
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.openDrawer(GravityCompat.START);
+
+
     }
 
 }

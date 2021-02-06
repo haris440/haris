@@ -1,5 +1,6 @@
 package kido.sparks.app.Adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,18 +33,22 @@ public class Milestone_Adapter extends RecyclerView.Adapter<Milestone_Adapter.Vi
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder_Milestone_Dashboard holder, int position) {
-
+if (vlist.get(position).isStatus())
+{
+ holder.checkBox.setChecked(true);
+}
+else {
+  holder.checkBox.setChecked(false);
+}
         holder.checkBox.setText(""+vlist.get(position).getName());
       //  holder.checkBox.setChecked(true);
 //
-//holder.imgedit.setOnClickListener(new View.OnClickListener() {
-//    @Override
-//    public void onClick(View v) {
-//        holder.mOnrecylerListener1.OnrecylerListenerEdit(position,vlist);
-//    }
-//}
-// );
-
+holder.checkBox.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+     mOnrecylerListener.OnrecylerListener(position,vlist);
+    }
+});
 
     }
 

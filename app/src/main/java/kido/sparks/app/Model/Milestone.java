@@ -3,6 +3,15 @@ package kido.sparks.app.Model;
 public class Milestone {
     public Milestone(){}
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    String key;
     String text;
     boolean status;
     String extra;
@@ -10,13 +19,14 @@ public class Milestone {
     boolean urlstatus;
     String name;
 
-    public Milestone(String text, boolean status, String extra, String url, boolean urlstatus, String name) {
+    public Milestone(String text, boolean status, String extra, String url, boolean urlstatus, String name,String key) {
         this.text = text;
         this.status = status;
         this.extra = extra;
         this.url = url;
         this.urlstatus = urlstatus;
         this.name = name;
+        this.key= key;
     }
 
     public String getText() {

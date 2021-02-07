@@ -41,8 +41,7 @@ import kido.sparks.app.R;
 public class KitchenFragment extends Fragment implements KitchenList_Adapter.OnrecylerListener{
 
 
-int whichmonth=1;
-
+    int whichmonth=1;
     RecyclerView recyclerView;
     ImageView empty;
     private ProgressBar mProgressBar;
@@ -51,7 +50,7 @@ int whichmonth=1;
     public static KitchenFragment newInstance() {
         return new KitchenFragment();
     }
-DatabaseReference refkitchen;
+    DatabaseReference refkitchen;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

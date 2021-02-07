@@ -321,7 +321,7 @@ int which;
        HashMap hash2 = new HashMap();
        hash2.put("key", ""+key);
        hash2.put("text", ""+text);
-       refroadmaplist.updateChildren(hash);
+       refroadmaplist.updateChildren(hash2);
    }
    else{
        DatabaseReference refroadmaplist = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs").child("" + pp.getKey()).child("milestones").child("month" + which).child("roadmap").child("list").child(""+key);

@@ -1,5 +1,6 @@
 package kido.sparks.app.Fragments.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kido.sparks.app.Adapters.Activities_Adapter;
+import kido.sparks.app.Fragments.Kitchen.ViewKitchenRecipe;
 import kido.sparks.app.Model.Activity_Model;
 import kido.sparks.app.R;
 
@@ -93,11 +95,15 @@ public class ActivitiesFragment extends Fragment implements Activities_Adapter.O
 
     @Override
     public void OnrecylerListener(int position, List<Activity_Model> viewChildren) {
-
+        Intent intent=new Intent(getActivity(), ViewActivity.class);
+        intent.putExtra("list",viewChildren.get(position));
+        startActivity(intent);
     }
 
     @Override
     public void OnrecylerListenerOpen(int position, List<Activity_Model> viewChildren) {
-
+        Intent intent=new Intent(getActivity(), ViewActivity.class);
+        intent.putExtra("list",viewChildren.get(position));
+        startActivity(intent);
     }
 }

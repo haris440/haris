@@ -88,23 +88,24 @@ public class DashboardFragment extends Fragment implements Milestone_Adapter.Onr
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    Map<String, Object> map = (Map<String, Object>) snapshot.getValue();
-                    if (map.get("status") != null) {
-                        Toast.makeText(getActivity(), "" + which + "" + map.get("status"), Toast.LENGTH_SHORT).show();
-                        if (map.get("status").equals(false)) {
-                            Toast.makeText(getActivity(), "we have to get data", Toast.LENGTH_SHORT).show();
-                            DatabaseReference FROMData = FirebaseDatabase.getInstance().getReference().child("OurData").child("milestone").child("month1");
-                            DatabaseReference TOData = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs").child("" + pp.getKey()).child("milestones").child("month" + which).child("milestoneslist");
-                            CopyPasteDATA(FROMData, TOData, which);
-                        } else {
-                            Toast.makeText(getActivity(), "we already have data", Toast.LENGTH_SHORT).show();
-                            SetAdapterdata(which);
-                            GetRoadMap(which);
-                        }
-                    }
+                    SetAdapterdata(which);
+                    GetRoadMap(which);
+//                    Map<String, Object> map = (Map<String, Object>) snapshot.getValue();
+//                    if (map.get("status") != null) {
+//                        Toast.makeText(getActivity(), "" + which + "" + map.get("status"), Toast.LENGTH_SHORT).show();
+//                        if (map.get("status").equals(false)) {
+//                            Toast.makeText(getActivity(), "we have to get data", Toast.LENGTH_SHORT).show();
+//                            DatabaseReference FROMData = FirebaseDatabase.getInstance().getReference().child("OurData").child("milestone").child("month1");
+//                            DatabaseReference TOData = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs").child("" + pp.getKey()).child("milestones").child("month" + which).child("milestoneslist");
+//                            CopyPasteDATA(FROMData, TOData, which);
+//                        } else {
+//                            Toast.makeText(getActivity(), "we already have data", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                    }
                 } else {
                     HashMap hash = new HashMap();
-                    hash.put("status", false);
+                    hash.put("status", true);
                     refaddmilesstatus.updateChildren(hash);
                     DatabaseReference FROMData = FirebaseDatabase.getInstance().getReference().child("OurData").child("milestone").child("month1");
                     DatabaseReference TOData = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs").child("" + pp.getKey()).child("milestones").child("month" + which).child("milestoneslist");

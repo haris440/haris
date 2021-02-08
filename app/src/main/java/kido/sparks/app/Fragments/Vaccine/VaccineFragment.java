@@ -1,7 +1,9 @@
 package kido.sparks.app.Fragments.Vaccine;
 
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Map;
 
 import kido.sparks.app.Model.Viewchild;
@@ -33,7 +38,7 @@ public class VaccineFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     Viewchild pp;
-
+CardView history,pending;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -49,6 +54,38 @@ public class VaccineFragment extends Fragment {
         test=view.findViewById(R.id.test);
         status=view.findViewById(R.id.status);
         mAuth=FirebaseAuth.getInstance();
+        history=view.findViewById(R.id.history);
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),VaccineHistory_Activity.class);
+                intent.putExtra("child",""+pp.getKey());
+                startActivity(intent);
+
+            }
+        });
+        pending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference refvaccine = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs").child("" +pp.getKey()).child("vaccine").child("month" + which);
+                HashMap hashMap=new HashMap();
+                hashMap.put("status",true);
+                refvaccine.updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Parents").child(""+mAuth.getCurrentUser().getUid()).child(""+pp.getKey()).child("vaccinehistory").child("month" + which);
+                        HashMap hashMap2=new HashMap();
+                        hashMap2.put("name","vaccine");
+                        hashMap2.put("detail",""+test.getText().toString());
+                        hashMap2.put("month","month"+which);
+                        hashMap2.put("key","month"+which);
+                        hashMap2.put("extra","extra");
+                    databaseReference.updateChildren(hashMap2);
+                    }
+                });
+
+            }
+        });
         GetVaccineData(pp.getKey());
 //CalculateBabyAge();
     }

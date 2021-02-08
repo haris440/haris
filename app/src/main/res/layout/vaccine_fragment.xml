@@ -22,6 +22,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="5"
                 app:cardBackgroundColor="#7C7C7C"
+                android:id="@+id/history"
                 app:cardCornerRadius="7dp"
                 app:cardElevation="10dp">
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,7 +50,12 @@ holder.checkBox.setOnClickListener(new View.OnClickListener() {
      mOnrecylerListener.OnrecylerListener(position,vlist);
     }
 });
-
+holder.imgvedio.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        mOnrecylerListener.OnrecylerListenerUrl(position,vlist);
+    }
+});
     }
 
     @Override
@@ -71,11 +77,12 @@ holder.checkBox.setOnClickListener(new View.OnClickListener() {
     public class ViewHolder_Milestone_Dashboard extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         CheckBox checkBox;
+        ImageView imgvedio;
         OnrecylerListener mOnrecylerListener1;
         public ViewHolder_Milestone_Dashboard(@NonNull View itemView, OnrecylerListener mOnrecylerListener) {
             super(itemView);
             checkBox=itemView.findViewById(R.id.checkBox);
-
+            imgvedio=itemView.findViewById(R.id.imgvedio);
             mOnrecylerListener1 = mOnrecylerListener;
             itemView.setOnClickListener(this);
         }
@@ -87,6 +94,7 @@ holder.checkBox.setOnClickListener(new View.OnClickListener() {
     }
     public interface OnrecylerListener {
         void OnrecylerListener(int position, List<Milestone> viewChildren);
+        void OnrecylerListenerUrl(int position, List<Milestone> viewChildren);
 
     }
 

@@ -1,5 +1,8 @@
 package kido.sparks.app.Fragments.dashboard;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +34,7 @@ import java.util.Map;
 
 import kido.sparks.app.Adapters.Counter_Adapter;
 import kido.sparks.app.Adapters.Milestone_Adapter;
+import kido.sparks.app.Fragments.Kitchen.ViewKitchenRecipe;
 import kido.sparks.app.Model.Milestone;
 import kido.sparks.app.Model.Viewchild;
 import kido.sparks.app.Parent_Panel.Parent_Home;
@@ -64,7 +68,7 @@ public class DashboardFragment extends Fragment implements Milestone_Adapter.Onr
         totalmilestone = view.findViewById(R.id.totalmilestone);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyler);
         recyclerView2 = (RecyclerView) view.findViewById(R.id.recylercounter);
-        milestone_adapter = new Milestone_Adapter(this::OnrecylerListener);
+        milestone_adapter = new Milestone_Adapter(this);
         counter_adapter = new Counter_Adapter(this::OnrecylerListenercounter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -157,7 +161,20 @@ public class DashboardFragment extends Fragment implements Milestone_Adapter.Onr
 
 
     }
+    @Override
+    public void OnrecylerListenerUrl(int position, List<Milestone> milestones) {
 
+        try {
+            String url = ""+milestones.get(position).getUrl();
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getActivity(), "Error occurs", Toast.LENGTH_SHORT).show();
+        }
+    }
     @Override
     public void OnrecylerListenercounter(int position) {
         //     List<Milestone> list = new ArrayList<>();

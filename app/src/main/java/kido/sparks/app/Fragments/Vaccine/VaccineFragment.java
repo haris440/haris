@@ -74,7 +74,7 @@ CardView history,pending;
                 refvaccine.updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
-                        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Parents").child(""+mAuth.getCurrentUser().getUid()).child(""+pp.getKey()).child("vaccinehistory").child("month" + which);
+                        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Parents").child(""+mAuth.getCurrentUser().getUid()).child("Childs").child(""+pp.getKey()).child("vaccinehistory").child("month" + which);
                         HashMap hashMap2=new HashMap();
                         hashMap2.put("name","vaccine");
                         hashMap2.put("detail",""+test.getText().toString());

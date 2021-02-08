@@ -48,7 +48,7 @@ FirebaseAuth firebaseAuth;
         empty = findViewById(R.id.empty);
         Bundle bundle=getIntent().getExtras();
 
-        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Parents").child(""+firebaseAuth.getCurrentUser().getUid()).child(""+bundle.get("child").toString()).child("vaccinehistory");
+        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Parents").child(""+firebaseAuth.getCurrentUser().getUid()).child("Childs").child(""+bundle.get("child").toString()).child("vaccinehistory");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -70,6 +70,8 @@ FirebaseAuth firebaseAuth;
               }
               else
                   {
+                      empty.setVisibility(View.VISIBLE);
+                      mProgressBar.setVisibility(View.GONE);
                       Toast.makeText(VaccineHistory_Activity.this, "No Vaccine History Exists For This Child", Toast.LENGTH_LONG).show();
               }
             }

@@ -55,6 +55,7 @@ CardView history,pending;
         status=view.findViewById(R.id.status);
         mAuth=FirebaseAuth.getInstance();
         history=view.findViewById(R.id.history);
+       pending=view.findViewById(R.id.pending);
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

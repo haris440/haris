@@ -41,6 +41,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
+                android:id="@+id/pending"
                 android:layout_weight="5"
                 app:cardBackgroundColor="#7C7C7C"
                 app:cardCornerRadius="7dp"

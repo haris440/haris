@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.potyvideo.library.AndExoPlayerView;
+
 import kido.sparks.app.Fragments.Kitchen.ViewKitchenRecipe;
 import kido.sparks.app.Model.Activity_Model;
 import kido.sparks.app.Model.Kitchen_Model;
@@ -22,7 +24,9 @@ public class ViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
-        Activity_Model activity_model=( Activity_Model) getIntent().getSerializableExtra("list");
+        AndExoPlayerView andExoPlayerView = findViewById(R.id.andExoPlayerView);
+        andExoPlayerView.setSource("https://firebasestorage.googleapis.com/v0/b/kidosparkserver.appspot.com/o/activities%2Fappreciate-nature-5-second-video.mp4?alt=media&token=9f20ffed-f133-4e7e-9977-503f67fc5071");
+       Activity_Model activity_model=( Activity_Model) getIntent().getSerializableExtra("list");
         txtdetail=findViewById(R.id.eddetail);
         txtname=findViewById(R.id.edname);
         btnlink=findViewById(R.id.btnlink);

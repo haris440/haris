@@ -39,6 +39,8 @@ public class VaccineFragment extends Fragment {
     private FirebaseAuth mAuth;
     Viewchild pp;
 CardView history,pending;
+    TextView textView11;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ CardView history,pending;
         test=view.findViewById(R.id.test);
         status=view.findViewById(R.id.status);
         mAuth=FirebaseAuth.getInstance();
+        textView11=view.findViewById(R.id.textView11);
         history=view.findViewById(R.id.history);
        pending=view.findViewById(R.id.pending);
         history.setOnClickListener(new View.OnClickListener() {
@@ -98,12 +101,13 @@ CardView history,pending;
          public void onDataChange(@NonNull DataSnapshot snapshot) {
              if (snapshot.exists())
              {
-                 Toast.makeText(getActivity(), "exists", Toast.LENGTH_SHORT).show();
+
             Map<String,Object> map=(Map<String, Object>) snapshot.getValue();
 test.setText(""+map.get("detail").toString());
 if (map.get("status").equals(true))
 {
     status.setText("Vaccinated");
+    textView11.setVisibility(View.INVISIBLE);
 }
 else {
     status.setText("Pending");
@@ -111,7 +115,7 @@ else {
 
              }
              else{
-                 Toast.makeText(getActivity(), "not extist", Toast.LENGTH_SHORT).show();
+
                  DatabaseReference from = FirebaseDatabase.getInstance().getReference().child("OurData").child("vaccine").child("month" + which);
                  CopyPasteDATA(from,refvaccine,which);
              }

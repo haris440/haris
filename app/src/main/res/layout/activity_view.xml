@@ -6,72 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Activities.ViewActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#7c7c7c"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/edname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btnlink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="#7c7c7c"
-        android:padding="8dp"
-        android:text="Open Recipe Link  "
-        android:textColor="#EFEFEF"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <com.potyvideo.library.AndExoPlayerView
         android:id="@+id/andExoPlayerView"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="250dp"
         app:andexo_aspect_ratio="aspect_16_9"
-        app:andexo_play_when_ready="true"
         app:andexo_resize_mode="Fit"
-        app:andexo_loop="finite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnlink" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.core.widget.NestedScrollView
+
+    <TextView
+        android:id="@+id/edname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="------"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/andExoPlayerView" />
+
+    <TextView
+        android:id="@+id/eddetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:text="----"
+        android:textColor="#303030"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/andExoPlayerView">
+        app:layout_constraintTop_toBottomOf="@+id/edname" />
 
-        <TextView
-            android:id="@+id/eddetail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="----"
-            android:textColor="#7c7c7c" />
-    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

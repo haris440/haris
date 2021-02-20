@@ -34,7 +34,7 @@ public class Vaccine_history_Adapter extends RecyclerView.Adapter<Vaccine_histor
     }
     @Override
     public void onBindViewHolder(@NonNull VaccineViewHolder holder, int position) {
-        holder.name.setText("" + vlist.get(position).getName());
+        holder.name.setText("("+vlist.get(position).getMonth()+")\n" + vlist.get(position).getName());
         holder.detial.setText(""+ vlist.get(position).getDetail());
 
 

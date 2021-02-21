@@ -163,17 +163,21 @@ public class DashboardFragment extends Fragment implements Milestone_Adapter.Onr
     }
     @Override
     public void OnrecylerListenerUrl(int position, List<Milestone> milestones) {
-
-        try {
-            String url = ""+milestones.get(position).getUrl();
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(url));
-            startActivity(i);
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(getActivity(), "Error occurs", Toast.LENGTH_SHORT).show();
-        }
+Intent intent=new Intent(getActivity(),ViewMilestonevideos.class);
+        intent.putExtra("month","month" + which);
+        intent.putExtra("key",""+milestones.get(position).getKey());
+        intent.putExtra("ckey",""+pp.getKey());
+        startActivity(intent);
+//        try {
+//            String url = ""+milestones.get(position).getUrl();
+//            Intent i = new Intent(Intent.ACTION_VIEW);
+//            i.setData(Uri.parse(url));
+//            startActivity(i);
+//        }
+//        catch (Exception e)
+//        {
+//            Toast.makeText(getActivity(), "Error occurs", Toast.LENGTH_SHORT).show();
+//        }
     }
     @Override
     public void OnrecylerListenercounter(int position) {

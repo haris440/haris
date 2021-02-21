@@ -7,12 +7,12 @@
     tools:context=".Fragments.Activities.ViewActivity">
 
 
-    <com.potyvideo.library.AndExoPlayerView
-        android:id="@+id/andExoPlayerView"
+    <com.devbrackets.android.exomedia.ui.widget.VideoView
+        android:id="@+id/vd"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        app:andexo_aspect_ratio="aspect_16_9"
-        app:andexo_resize_mode="Fit"
+
+        app:useDefaultControls="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/andExoPlayerView" />
+        app:layout_constraintTop_toBottomOf="@+id/vd" />
 
     <TextView
         android:id="@+id/eddetail"

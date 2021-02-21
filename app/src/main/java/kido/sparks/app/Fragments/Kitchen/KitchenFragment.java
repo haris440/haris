@@ -90,7 +90,7 @@ public class KitchenFragment extends Fragment implements KitchenList_Adapter.Onr
                 }
                 else {
                     kitchen_model.clear();
-                    //Toast.makeText(getActivity(), "Add childrens", Toast.LENGTH_SHORT).show();
+
                   mProgressBar.setVisibility(View.GONE);
                  empty.setVisibility(View.VISIBLE);
                   adapter.setlist( kitchen_model);

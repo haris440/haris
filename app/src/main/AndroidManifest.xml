@@ -12,7 +12,9 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Fragments.dashboard.ViewMilestonevideos"></activity>
+        <activity android:name=".Fragments.dashboard.ViewVideo"></activity>
+        <activity android:name=".tesstt.MainActivity" />
+        <activity android:name=".Fragments.dashboard.ViewMilestonevideos" />
         <activity android:name=".Fragments.Vaccine.VaccineHistory_Activity" />
         <activity android:name=".Fragments.Activities.ViewActivity" />
         <activity android:name=".Fragments.Kitchen.ViewKitchenRecipe" />

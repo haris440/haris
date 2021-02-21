@@ -1,6 +1,8 @@
 package kido.sparks.app.Model;
 
-public class VideoModel {
+import java.io.Serializable;
+
+public class VideoModel implements Serializable {
     public  VideoModel(){}
     String name;
     String url;

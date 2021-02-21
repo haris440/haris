@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,11 +25,12 @@ import java.util.List;
 
 import kido.sparks.app.Adapters.KitchenList_Adapter;
 import kido.sparks.app.Adapters.Milestonevideo_Adapter;
+import kido.sparks.app.Fragments.Activities.ViewActivity;
 import kido.sparks.app.Model.Kitchen_Model;
 import kido.sparks.app.Model.VideoModel;
 import kido.sparks.app.R;
 
-public class ViewMilestonevideos extends AppCompatActivity {
+public class ViewMilestonevideos extends AppCompatActivity implements Milestonevideo_Adapter.OnrecylerListener{
     DatabaseReference refvideo;
     FirebaseAuth mAuth;
     String month, key, ckey;
@@ -54,7 +56,7 @@ public class ViewMilestonevideos extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         empty = findViewById(R.id.empty);
-        adapter = new Milestonevideo_Adapter();
+        adapter = new Milestonevideo_Adapter(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -95,4 +97,10 @@ public class ViewMilestonevideos extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void OnrecylerListener(int position, List<VideoModel> vlist) {
+        Intent intent=new Intent(ViewMilestonevideos.this, ViewVideo.class);
+        intent.putExtra("list",vlist.get(position));
+        startActivity(intent);
+    }
 }

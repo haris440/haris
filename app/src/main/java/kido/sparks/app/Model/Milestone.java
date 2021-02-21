@@ -1,6 +1,8 @@
 package kido.sparks.app.Model;
 
-public class Milestone {
+import java.io.Serializable;
+
+public class Milestone implements Serializable {
     public Milestone(){}
 
     public String getKey() {

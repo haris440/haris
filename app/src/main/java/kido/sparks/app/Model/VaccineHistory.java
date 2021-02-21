@@ -1,6 +1,8 @@
 package kido.sparks.app.Model;
 
-public class VaccineHistory {
+import java.io.Serializable;
+
+public class VaccineHistory implements Serializable {
     public  VaccineHistory(){}
     String name;
     String detail;

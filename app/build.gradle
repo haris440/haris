@@ -62,6 +62,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation 'com.devbrackets.android:exomedia:4.3.0'
-    implementation  'com.github.hoanganhtuan95ptit:AutoPlayVideoRecyclerView:1.0.1'
+
+
 
 }

@@ -68,19 +68,22 @@ public class ViewMilestonevideos extends AppCompatActivity implements Milestonev
         Log.e("ref", "" + ckey + "/" + month + "/" + key);
         refvideo = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs").child("" + ckey).child("milestones").child(month).child("milestoneslist").child(key).child("videolist");
 
-        //  refvideo= FirebaseDatabase.getInstance().getReference().child("bachy");
+
         refvideo.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                videoModels.clear();
                 if (snapshot.exists()) {
                     Toast.makeText(ViewMilestonevideos.this, "exist", Toast.LENGTH_SHORT).show();
-                    empty.setVisibility(View.GONE);
-                    videoModels.add(new VideoModel("1", "https://firebasestorage.googleapis.com/v0/b/kidosparkserver.appspot.com/o/activities%2F5-second-video-watch-the-milky-way-rise.mp4?alt=media&token=731cc215-7f8e-4e2c-b512-7784ec00c7fc", "1", "1"));
-                    videoModels.add(new VideoModel("2", "https://firebasestorage.googleapis.com/v0/b/kidosparkserver.appspot.com/o/activities%2Fappreciate-nature-5-second-video.mp4?alt=media&token=9f20ffed-f133-4e7e-9977-503f67fc5071", "2", "2"));
-                    videoModels.add(new VideoModel("3", "https://firebasestorage.googleapis.com/v0/b/kidosparkserver.appspot.com/o/activities%2Fplay-activities-for-babies-penfield-childrens-center.mp4?alt=media&token=424ec654-d51b-4de0-82a9-325f8f9a0846", "3", "3"));
-                    adapter.setlist(videoModels);
-                    mProgressBar.setVisibility(View.GONE);
 
+                    mProgressBar.setVisibility(View.GONE);
+                    empty.setVisibility(View.INVISIBLE);
+                    for (DataSnapshot ds1 : snapshot.getChildren()) {
+                        VideoModel data = ds1.getValue(VideoModel.class);
+                   videoModels.add(data);
+                    }
+                    mProgressBar.setVisibility(View.GONE);
+                    adapter.setlist(videoModels);
                 } else {
                     Toast.makeText(ViewMilestonevideos.this, "no video for this milestone", Toast.LENGTH_SHORT).show();
                    videoModels.clear();

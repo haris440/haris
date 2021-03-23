@@ -126,7 +126,30 @@ public class DashboardFragment extends Fragment implements Milestone_Adapter.Onr
         });
 
     }
+    public void GetMileStones_History(int which) {
+        DatabaseReference refaddmilesstatus = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs").child("" + pp.getKey()).child("milestones").child("month" + which);
 
+        refaddmilesstatus.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    SetAdapterdata(which);
+                    GetRoadMap(which);
+                    counter_adapter.setlist(which);
+                } else {
+                    Toast.makeText(getActivity(), "No historyfound", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
     @Override
     public void OnrecylerListener(int position, List<Milestone> milestones) {
         Toast.makeText(getActivity(), "asd"+milestones.get(position).getName(), Toast.LENGTH_SHORT).show();
@@ -181,13 +204,16 @@ Intent intent=new Intent(getActivity(),ViewMilestonevideos.class);
     }
     @Override
     public void OnrecylerListenercounter(int position) {
-        //     List<Milestone> list = new ArrayList<>();
-        // int pos=position+1;
-//        list.add(new Milestone("data from month "+pos,false,"a","",false));
-//        list.add(new Milestone("data from month "+pos,false,"a","",false));
-//        list.add(new Milestone("data from month "+pos,false,"a","",false));
-        //   counter_adapter.setlist(position);
-        //   milestone_adapter.setlist(list);
+//             List<Milestone> list = new ArrayList<>();
+         int pos=position+1;
+//        list.add(new Milestone("text+pos"+pos,false," extra", "url",false,"name",""));
+//        list.add(new Milestone("text",true," extra", "url",false,"name",""));
+//        list.add(new Milestone("text",true," extra", "url",false,"name",""));
+         counter_adapter.setlist(position);
+//           milestone_adapter.setlist(list);
+        Toast.makeText(getActivity(), ""+pos+""+position, Toast.LENGTH_SHORT).show();
+        which=pos;
+      GetMileStones_History(pos);
     }
 
     private void CopyPasteDATA(final DatabaseReference fromPath, final DatabaseReference toPath, int which) {

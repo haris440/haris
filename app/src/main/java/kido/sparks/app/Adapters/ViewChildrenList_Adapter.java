@@ -46,7 +46,7 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
         holder.gender.setText(""+vlist.get(position).getBabygender());
 
 
-
+        CalculateBabyAge2(vlist.get(position).getAgeyear(),vlist.get(position).getAgemonth(),vlist.get(position).getAgemonth());
         holder.imgedit.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -146,5 +146,21 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
 //        Log.e("dsad","Number of months since James gosling born : " + monthsDiff);
 //        Log.e("dsad","Sir James Gosling's age : "+ totaldays);
 //        Log.e("dsad","Sir James Gosling's age : "+ ageInMonths);
+    }
+    public void CalculateBabyAge2(String yearrr,String monthh ,String dayy)
+    {
+        int yearr= Integer.parseInt(yearrr);
+        int month= Integer.parseInt(monthh);
+        int day= Integer.parseInt(dayy);
+        Calendar birthDay = new GregorianCalendar(yearr, month, day);
+        Calendar today = new GregorianCalendar();
+        today.setTime(new Date());
+        int yearsInBetween = today.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
+        int monthsDiff = today.get(Calendar.MONTH) - birthDay.get(Calendar.MONTH);
+        int totaldays = today.get(Calendar.DAY_OF_YEAR) - birthDay.get(Calendar.DAY_OF_YEAR);
+        long ageInMonths = yearsInBetween*12 + monthsDiff;
+        long age = yearsInBetween;
+              Log.e("age",""+ageInMonths );
+           
     }
 }

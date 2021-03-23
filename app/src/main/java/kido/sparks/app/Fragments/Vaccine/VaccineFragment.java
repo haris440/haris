@@ -90,7 +90,7 @@ CardView history,pending;
 
             }
         });
-        GetVaccineData(pp.getKey());
+        CalculateBabyAge() ;
 //CalculateBabyAge();
     }
     public  void GetVaccineData(String key)

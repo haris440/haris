@@ -135,10 +135,16 @@ public class DashboardFragment extends Fragment implements Milestone_Adapter.Onr
                 if (snapshot.exists()) {
                     SetAdapterdata(which);
                     GetRoadMap(which);
-                    counter_adapter.setlist(which);
+                  //  counter_adapter.setlist(which);
                 } else {
                     Toast.makeText(getActivity(), "No historyfound", Toast.LENGTH_SHORT).show();
-
+                    list.clear();
+                    //  Toast.makeText(Parent_Home.this, "Add childrens", Toast.LENGTH_SHORT).show();
+//                    mProgressBar.setVisibility(View.GONE);
+//                    empty.setVisibility(View.VISIBLE);
+                    milestone_adapter.setlist(list);
+                    totalmilestone.setText("No Record Found");
+                    total=0;
                 }
 
             }

@@ -32,12 +32,13 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import kido.sparks.app.Agorawebcam.activities.MainActivityagora;
 import kido.sparks.app.Model.Viewchild;
 import kido.sparks.app.R;
 
 public class Child_Panel_Activity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     TextView babyname,babyage;
-    ImageView babyimg;
+    ImageView babyimg,webcam;
     Viewchild pp;
     ConstraintLayout constraintLayout;
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -65,7 +66,14 @@ public class Child_Panel_Activity extends AppCompatActivity  implements Navigati
         pp=(Viewchild) getIntent().getSerializableExtra("list");
         babyname=findViewById(R.id.babyname);
         babyimg= findViewById(R.id.babyimg);
+        webcam=findViewById(R.id.webcam);
         babyname.setText(""+pp.getBabyname());
+        webcam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Child_Panel_Activity.this, MainActivityagora.class));
+            }
+        });
         Glide.with(this).asDrawable().centerCrop().load(""+pp.getBabyimg()).into(babyimg);
 if (pp.getBabygender().contains("Male"))
 {

@@ -54,6 +54,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/webcam"
+           android:id="@+id/webcam"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textView10"
             app:layout_constraintStart_toStartOf="@+id/textView10"

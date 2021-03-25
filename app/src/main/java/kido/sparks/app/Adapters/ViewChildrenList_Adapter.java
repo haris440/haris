@@ -41,12 +41,12 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
     @Override
     public void onBindViewHolder(@NonNull Viewholder_Child holder, int position) {
         holder.name.setText("" + vlist.get(position).getBabyname());
-        holder.age.setText(""+CalculateBabyAge(vlist.get(position).getAgeyear(),vlist.get(position).getAgemonth(),vlist.get(position).getAgemonth()));
+       holder.age.setText(""+CalculateBabyAge(vlist.get(position).getAgeyear(),vlist.get(position).getAgemonth(),vlist.get(position).getAgeday()));
         holder.weight.setText(""+vlist.get(position).getBabyweight()+" kg");
         holder.gender.setText(""+vlist.get(position).getBabygender());
 
 
-        CalculateBabyAge2(vlist.get(position).getAgeyear(),vlist.get(position).getAgemonth(),vlist.get(position).getAgemonth());
+       // CalculateBabyAge2(vlist.get(position).getAgeyear(),vlist.get(position).getAgemonth(),vlist.get(position).getAgemonth());
         holder.imgedit.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -114,6 +114,10 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
 
     public  String CalculateBabyAge(String yearrr,String monthh ,String dayy)
     {
+
+
+
+
         int yearr= Integer.parseInt(yearrr);
         int month= Integer.parseInt(monthh);
         int day= Integer.parseInt(dayy);
@@ -143,9 +147,51 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
 
 
         }
+
+
+
+
+
 //        Log.e("dsad","Number of months since James gosling born : " + monthsDiff);
 //        Log.e("dsad","Sir James Gosling's age : "+ totaldays);
 //        Log.e("dsad","Sir James Gosling's age : "+ ageInMonths);
+    }
+    public  String CalculateBabyAge3(String yearrr,String monthh ,String dayy) {
+        long start = 0;
+
+        int yearr= Integer.parseInt(yearrr);
+        int month= Integer.parseInt(monthh);
+        int day= Integer.parseInt(dayy);
+        Calendar birthDay = new GregorianCalendar(yearr, month, day);
+        Calendar today = new GregorianCalendar();
+        today.setTime(new Date());
+        int yearsInBetween = today.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
+        int monthsDiff = today.get(Calendar.MONTH) - birthDay.get(Calendar.MONTH);
+        int totaldays = today.get(Calendar.DAY_OF_YEAR) - birthDay.get(Calendar.DAY_OF_YEAR);
+        long ageInMonths = yearsInBetween * 12 + monthsDiff;
+        long age = yearsInBetween;
+
+        if (ageInMonths == 0) {
+            if (totaldays == 1)
+             return  totaldays + " day old";
+            else
+                return "" + "is " + totaldays + " days old";
+
+
+        } else {
+            if (monthsDiff == 1) {
+          return     "" + " is 1" + " month";
+
+            } else {
+             return "" + " is " + ageInMonths + " months";
+
+            }
+
+
+        }
+
+
+
     }
     public void CalculateBabyAge2(String yearrr,String monthh ,String dayy)
     {

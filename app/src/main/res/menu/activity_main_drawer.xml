@@ -7,7 +7,7 @@
         <item
             android:id="@+id/nav_viewchilds"
             android:icon="@drawable/ic_baseline_streetview_24"
-            android:title="View Childs" />
+            android:title="View Babies" />
         <item
             android:id="@+id/nav_pa"
             android:icon="@drawable/ic_baseline_accessibility_24"
@@ -36,7 +36,7 @@
             <item
                 android:id="@+id/nav_exit"
                 android:icon="@drawable/ic_baseline_exit_to_app_24"
-                android:title="Exit" />
+                android:title="Logout" />
         </menu>
     </item>
 

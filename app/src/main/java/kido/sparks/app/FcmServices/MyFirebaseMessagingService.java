@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "FirebaseService";
+    //jj
     @Override
     public void onNewToken(String token) {
         super.onNewToken(token);

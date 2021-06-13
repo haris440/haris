@@ -335,7 +335,7 @@ int which;
         try {
             DatabaseReference refroadmap = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs").child("" + pp.getKey()).child("milestones").child("month" + which).child("roadmap");
 
-            refroadmap.addValueEventListener(new ValueEventListener() {
+            refroadmap.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {

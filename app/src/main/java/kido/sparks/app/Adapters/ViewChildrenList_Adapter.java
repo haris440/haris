@@ -116,9 +116,8 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
     {
 
 
-
-
         int yearr= Integer.parseInt(yearrr);
+
         int month= Integer.parseInt(monthh);
         int day= Integer.parseInt(dayy);
         Calendar birthDay = new GregorianCalendar(yearr, month, day);

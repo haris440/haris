@@ -322,6 +322,7 @@ Intent intent=new Intent(getActivity(),ViewMilestonevideos.class);
         }
 
         counter_adapter.setlist((int) start - 1);
+        recyclerView2.scrollToPosition((int) start - 1);
         milestone_adapter.setlist(list);
          which = (int)start;
         GetMileStones((int) start);
@@ -385,5 +386,4 @@ int which;
 
 
     }
-
 }

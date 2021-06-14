@@ -111,9 +111,7 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
     }
     private void setsubcriptio() {
         Log.e("subbbf","funnn");
-        Log.e("size",""+sublist.size());
-        Log.e("size",""+sublist.get(0));
-        Log.e("size",""+sublist.get(1));
+
 
   for (int i=1; i<=36; i++)
   {
@@ -130,11 +128,25 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
       }
   }
     }
-    public void fun_logout(View view) {
-        mAuth.signOut();
+    private void setunsubcriptio() {
+        Log.e("subbbf","funnn");
+
+
+        for (int i=1; i<=36; i++)
+        {
+
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("month"+i);
+
+        }
         Intent intent = new Intent(Parent_Home.this, SignIn.class);
         startActivity(intent);
         finish();
+
+    }
+    public void fun_logout(View view) {
+        setunsubcriptio();
+        mAuth.signOut();
+
     }
 
     public void fun_add_children(View view) {

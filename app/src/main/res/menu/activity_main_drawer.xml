@@ -8,18 +8,7 @@
             android:id="@+id/nav_viewchilds"
             android:icon="@drawable/ic_baseline_streetview_24"
             android:title="View Babies" />
-        <item
-            android:id="@+id/nav_pa"
-            android:icon="@drawable/ic_baseline_accessibility_24"
-            android:title="Physical Activities" />
-        <item
-            android:id="@+id/nav_ma"
-            android:icon="@drawable/ic_baseline_accessibility_24"
-            android:title="Mental Activities" />
-        <item
-            android:id="@+id/nav_roadmap"
-            android:icon="@drawable/ic_baseline_military_tech_24"
-            android:title="View Road Map" />
+     >
         <item
             android:id="@+id/nav_webcam"
             android:icon="@drawable/webcam"
@@ -36,7 +25,7 @@
             <item
                 android:id="@+id/nav_exit"
                 android:icon="@drawable/ic_baseline_exit_to_app_24"
-                android:title="Logout" />
+                android:title="Exit" />
         </menu>
     </item>
 

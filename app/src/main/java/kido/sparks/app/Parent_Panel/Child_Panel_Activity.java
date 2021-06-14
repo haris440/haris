@@ -115,21 +115,7 @@ else{
 finish();
 
 
-        } else if (id == R.id.nav_pa) {
-
-
-
-
-        }  else if (id == R.id.nav_ma) {
-
-
-
-
         }
-        else if (id == R.id.nav_roadmap) {
-
-
-                 }
         else if (id == R.id.nav_rate) {
             final String appPackageName = getPackageName();
             try {
@@ -139,7 +125,11 @@ finish();
             }
         }
         else if (id == R.id.nav_exit) {
+            finish();
 
+        }
+        else if (id == R.id.nav_webcam) {
+            startActivity(new Intent(Child_Panel_Activity.this, MainActivityagora.class));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

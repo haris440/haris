@@ -152,6 +152,7 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
     public void fun_add_children(View view) {
         Intent intent = new Intent(Parent_Home.this, Add_Children.class);
         startActivity(intent);
+        ///hjgjh
     }
 
     public void userinfo() {

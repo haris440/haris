@@ -264,6 +264,7 @@ Intent intent=new Intent(getActivity(),ViewMilestonevideos.class);
                     //empty.setVisibility(View.INVISIBLE);
                     for (DataSnapshot ds1 : snapshot.getChildren()) {
                         Milestone childdata = ds1.getValue(Milestone.class);
+
                         list.add(childdata);
                     }
                     //mProgressBar.setVisibility(View.GONE);

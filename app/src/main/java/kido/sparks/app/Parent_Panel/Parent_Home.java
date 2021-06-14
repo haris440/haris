@@ -21,8 +21,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
@@ -78,9 +82,11 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
                     for (DataSnapshot ds1 : snapshot.getChildren()) {
                         Viewchild childdata = ds1.getValue(Viewchild.class);
                         list.add(childdata);
+                      CalculateBabyAge(childdata.getAgeyear(),childdata.getAgemonth(),childdata.getAgeday());
                     }
                     mProgressBar.setVisibility(View.GONE);
                     adapter.setlist(list);
+                    setsubcriptio();
 
 
                 }
@@ -95,13 +101,35 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
 
             }
 
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
+    private void setsubcriptio() {
+        Log.e("subbbf","funnn");
+        Log.e("size",""+sublist.size());
+        Log.e("size",""+sublist.get(0));
+        Log.e("size",""+sublist.get(1));
 
+  for (int i=1; i<=36; i++)
+  {
+      //Log.e("for","loopsub = month"+sublist.get(i));
+     // Log.e("for","loop = month"+i);
+      if(sublist.contains("month"+i))
+      {
+          Log.e("if","sub = month"+i);
+          FirebaseMessaging.getInstance().subscribeToTopic("month"+i);
+      }
+      else {
+          Log.e("if","unsub = month"+i);
+          FirebaseMessaging.getInstance().unsubscribeFromTopic("month"+i);
+      }
+  }
+    }
     public void fun_logout(View view) {
         mAuth.signOut();
         Intent intent = new Intent(Parent_Home.this, SignIn.class);
@@ -164,5 +192,55 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
         Intent intent=new Intent(Parent_Home.this, Firestoretest.class);
 
      //   startActivity(intent);
+    }
+    private List<String> sublist = new ArrayList<>();
+    public  String CalculateBabyAge(String yearrr,String monthh ,String dayy)
+    {
+
+
+        int yearr= Integer.parseInt(yearrr);
+
+        int month= Integer.parseInt(monthh);
+        int day= Integer.parseInt(dayy);
+        Calendar birthDay = new GregorianCalendar(yearr, month, day);
+        Calendar today = new GregorianCalendar();
+        today.setTime(new Date());
+        int yearsInBetween = today.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
+        int monthsDiff = today.get(Calendar.MONTH) - birthDay.get(Calendar.MONTH);
+        int totaldays = today.get(Calendar.DAY_OF_YEAR) - birthDay.get(Calendar.DAY_OF_YEAR);
+        long ageInMonths = yearsInBetween*12 + monthsDiff;
+        long age = yearsInBetween;
+
+        if(ageInMonths==0)
+        {
+            if (totaldays==1) {
+                sublist.add("month1");
+                return "" + totaldays + " day old";
+            }
+        else {
+                sublist.add("month1");
+                return "" + totaldays + " days old";
+            }
+
+
+        }
+        else {
+            if(monthsDiff==1) {
+                sublist.add("month1");
+                return "" + "1 " + " month old";
+            }
+            else {
+                sublist.add("month"+ageInMonths+"");
+                return "" + ageInMonths + " months old";
+            }
+
+
+        }
+
+
+
+
+
+
     }
 }

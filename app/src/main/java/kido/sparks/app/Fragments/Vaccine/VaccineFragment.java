@@ -96,7 +96,7 @@ CardView history,pending;
     public  void GetVaccineData(String key)
     {
         DatabaseReference refvaccine = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs").child("" +key).child("vaccine").child("month" + which);
-     refvaccine.addValueEventListener(new ValueEventListener() {
+     refvaccine.addListenerForSingleValueEvent(new ValueEventListener() {
          @Override
          public void onDataChange(@NonNull DataSnapshot snapshot) {
              if (snapshot.exists())

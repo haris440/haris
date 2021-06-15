@@ -183,7 +183,7 @@ public class DashboardFragment extends Fragment implements Milestone_Adapter.Onr
         Settotal(total,true,""+milestones.get(position).getKey(),""+milestones.get(position).getName());
     }
 
-
+        totalmilestone.setText("Number of Acheived Milestone is " + total);
 
 
     refdata.updateChildren(hashMap);
@@ -350,8 +350,9 @@ int which;
                         hash.put("total", "0");
                         hash.put("status", true);
                         hash.put("extra", "0");
-                        refroadmap.updateChildren(hash);
                         totalmilestone.setText("Number of Acheived Milestone is 0");
+
+                        refroadmap.updateChildren(hash);
                         total=0;
                     }
                 }

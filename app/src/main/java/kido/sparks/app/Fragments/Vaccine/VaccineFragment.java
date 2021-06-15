@@ -85,6 +85,7 @@ CardView history,pending;
                         hashMap2.put("key","month"+which);
                         hashMap2.put("extra","extra");
                     databaseReference.updateChildren(hashMap2);
+                        status.setText("Vaccinated");
                     }
                 });
 
@@ -103,7 +104,7 @@ CardView history,pending;
              {
 
             Map<String,Object> map=(Map<String, Object>) snapshot.getValue();
-test.setText(""+map.get("detail").toString());
+                   test.setText(""+map.get("detail").toString());
 if (map.get("status").equals(true))
 {
     status.setText("Vaccinated");
@@ -181,7 +182,7 @@ else {
                             System.out.println("Success");
                           //  SetAdapterdata(which);
                          //   GetRoadMap(which);
-
+                            CalculateBabyAge() ;
                         }
                     }
                 });

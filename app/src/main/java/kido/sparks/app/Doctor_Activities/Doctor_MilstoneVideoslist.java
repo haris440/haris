@@ -37,7 +37,7 @@ public class Doctor_MilstoneVideoslist extends AppCompatActivity implements Coun
     public void OnrecylerListenercounter(int position) {
         Intent intent = new Intent(Doctor_MilstoneVideoslist.this, Single_Video_milestone_doc.class);
         int pos=position+1;
-        intent.putExtra("month","month"+pos);
+        intent.putExtra("month",""+pos);
         startActivity(intent);
     }
 

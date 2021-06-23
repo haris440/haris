@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,14 +63,26 @@ public class Single_Video_milestone_doc extends AppCompatActivity implements  Mi
 
     public void checkref() {
         mAuth = FirebaseAuth.getInstance();
-
-        refvideo = FirebaseDatabase.getInstance().getReference().child("OurData").child("milestone").child(month).child("videolist");
-
-
-        refvideo.addListenerForSingleValueEvent(new ValueEventListener() {
+        Toast.makeText(this, "month", Toast.LENGTH_SHORT).show();
+       DatabaseReference refvideo2 = FirebaseDatabase.getInstance().getReference().child("OurData").child("milestone").child("month"+month);
+       refvideo2.addListenerForSingleValueEvent(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+               if(snapshot.exists())
+               {
+                   videoModels.clear();
+                   Toast.makeText(Single_Video_milestone_doc.this, "ccc="+""+snapshot.getChildrenCount(), Toast.LENGTH_SHORT).show();
+                   Log.e("count",""+snapshot.getChildrenCount());
+                   Log.e("count",""+month);
+                   for (int i=1; i<=snapshot.getChildrenCount(); i++)
+                   {
+                       DatabaseReference     refvideo3 = FirebaseDatabase.getInstance().getReference().child("OurData").child("milestone").child("month"+month).child(""+i).child("videolist");
+//
+//
+     refvideo3.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                videoModels.clear();
+
                 if (snapshot.exists()) {
                     Toast.makeText(Single_Video_milestone_doc.this, "exist", Toast.LENGTH_SHORT).show();
 
@@ -91,9 +105,53 @@ public class Single_Video_milestone_doc extends AppCompatActivity implements  Mi
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                videoModels.clear();
             }
         });
+                   }
+               }
+               else{
+                   videoModels.clear();
+               }
+           }
+
+           @Override
+           public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+           }
+       });
+//        refvideo = FirebaseDatabase.getInstance().getReference().child("OurData").child("milestone").child("month"+month).child(""+month).child("videolist");
+//
+//
+//        refvideo.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                videoModels.clear();
+//                if (snapshot.exists()) {
+//                    Toast.makeText(Single_Video_milestone_doc.this, "exist", Toast.LENGTH_SHORT).show();
+//
+//                    mProgressBar.setVisibility(View.GONE);
+//                    empty.setVisibility(View.INVISIBLE);
+//                    for (DataSnapshot ds1 : snapshot.getChildren()) {
+//                        VideoModel data = ds1.getValue(VideoModel.class);
+//                        videoModels.add(data);
+//                    }
+//                    mProgressBar.setVisibility(View.GONE);
+//                    adapter.setlist(videoModels);
+//                } else {
+//                    Toast.makeText(Single_Video_milestone_doc.this, "no video for this milestone", Toast.LENGTH_SHORT).show();
+//                    videoModels.clear();
+//                    mProgressBar.setVisibility(View.GONE);
+//                    empty.setVisibility(View.VISIBLE);
+//                    adapter.setlist(videoModels);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
     }
 
     @Override

@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,9 +33,12 @@ import java.util.List;
 import java.util.Map;
 
 import kido.sparks.app.Adapters.ViewChildrenList_Adapter;
+import kido.sparks.app.Doctor_Activities.Doctor_Profile;
 import kido.sparks.app.Firestoretest;
+import kido.sparks.app.MainHome;
 import kido.sparks.app.Model.Viewchild;
 import kido.sparks.app.R;
+import kido.sparks.app.SharedPrefrenceClasses.SharedPrefrence;
 import kido.sparks.app.SignIn_Screens.SignIn;
 
 public class Parent_Home extends AppCompatActivity implements ViewChildrenList_Adapter.OnrecylerListener {
@@ -44,7 +49,7 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
     ViewChildrenList_Adapter adapter;
     private List<Viewchild> list = new ArrayList<>();
     ImageView empty;
-
+    SharedPrefrence sharedPrefrence;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,13 +68,39 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         empty = findViewById(R.id.empty);
-
+        sharedPrefrence=new SharedPrefrence(this);
         refdata = FirebaseDatabase.getInstance().getReference().child("Parents").child("" + mAuth.getCurrentUser().getUid().toString()).child("Childs");
         refdata.keepSynced(true);
-        GetChildList();
+
+        Checkuser();
 
     }
+    private void Checkuser() {
+        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Parents").child(""+mAuth.getCurrentUser().getUid());
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    GetChildList();
 
+                }
+                else{
+                    Toast.makeText(Parent_Home.this, "no user found", Toast.LENGTH_SHORT).show();
+                    sharedPrefrence.setypeofuser("0");
+                    mAuth.signOut();
+                    Intent intent = new Intent(Parent_Home.this, MainHome.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+    }
     public void GetChildList() {
 
         refdata.addValueEventListener(new ValueEventListener() {
@@ -82,7 +113,14 @@ public class Parent_Home extends AppCompatActivity implements ViewChildrenList_A
                     for (DataSnapshot ds1 : snapshot.getChildren()) {
                         Viewchild childdata = ds1.getValue(Viewchild.class);
                         list.add(childdata);
-                      CalculateBabyAge(childdata.getAgeyear(),childdata.getAgemonth(),childdata.getAgeday());
+                        try {
+                            CalculateBabyAge(childdata.getAgeyear(),childdata.getAgemonth(),childdata.getAgeday());
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+
                     }
                     mProgressBar.setVisibility(View.GONE);
                     adapter.setlist(list);

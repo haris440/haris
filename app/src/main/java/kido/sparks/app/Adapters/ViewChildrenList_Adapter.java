@@ -41,7 +41,14 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
     @Override
     public void onBindViewHolder(@NonNull Viewholder_Child holder, int position) {
         holder.name.setText("" + vlist.get(position).getBabyname());
-       holder.age.setText(""+CalculateBabyAge(vlist.get(position).getAgeyear(),vlist.get(position).getAgemonth(),vlist.get(position).getAgeday()));
+        try {
+            holder.age.setText(""+CalculateBabyAge(vlist.get(position).getAgeyear(),vlist.get(position).getAgemonth(),vlist.get(position).getAgeday()));
+        }
+        catch (Exception e)
+        {
+
+        }
+
         holder.weight.setText(""+vlist.get(position).getBabyweight()+" kg");
         holder.gender.setText(""+vlist.get(position).getBabygender());
 
@@ -55,19 +62,25 @@ public class ViewChildrenList_Adapter extends RecyclerView.Adapter<ViewChildrenL
 });
 
             Glide.with(holder.itemView).asDrawable().centerCrop().load(""+vlist.get(position).getBabyimg()).into(holder.img);
+try {
+    if (vlist.get(position).getBabygender().toString().equals("Male"))
+    {
 
-        if (vlist.get(position).getBabygender().toString().equals("Male"))
-        {
+    }
+    else
+    {
+        holder.name.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
+        holder.age.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
+        holder.weight.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
+        holder.gender .setTextColor(holder.itemView.getResources().getColor(R.color.pink));
+        holder.imgedit.setColorFilter(holder.itemView.getResources().getColor(R.color.pink));
+    }
+}
+catch (Exception e)
+{
 
-        }
-        else
-        {
-            holder.name.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
-            holder.age.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
-            holder.weight.setTextColor(holder.itemView.getResources().getColor(R.color.pink));
-            holder.gender .setTextColor(holder.itemView.getResources().getColor(R.color.pink));
-            holder.imgedit.setColorFilter(holder.itemView.getResources().getColor(R.color.pink));
-        }
+}
+
 
     }
 

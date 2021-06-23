@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kido.sparks.app">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -20,8 +19,15 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Fragments.dashboard.ViewVideo"></activity>
-
+        <activity android:name=".Doctor_Activities.Single_Video_milestone_doc"></activity>
+        <activity android:name=".Doctor_Activities.Single_Video_Activity_doc" />
+        <activity android:name=".MainHome" />
+        <activity android:name=".Doctor_Activities.Doctor_ActivitiesVideoslist" />
+        <activity android:name=".Doctor_Activities.Doctor_MilstoneVideoslist" />
+        <activity android:name=".Doctor_Activities.Doctor_Profile" />
+        <activity android:name=".Doctor_Activities.Doctor_Signin" />
+        <activity android:name=".Doctor_Activities.Doctor_Signup" />
+        <activity android:name=".Fragments.dashboard.ViewVideo" />
         <activity android:name=".Fragments.dashboard.ViewMilestonevideos" />
         <activity android:name=".Fragments.Vaccine.VaccineHistory_Activity" />
         <activity android:name=".Fragments.Activities.ViewActivity" />
@@ -82,19 +88,19 @@
 
         <activity
             android:name=".Agorawebcam.activities.LiveActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Agorawebcam.activities.RoleActivity"
-            android:screenOrientation="portrait"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Agorawebcam.activities.SettingsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Agorawebcam.activities.MainActivityagora"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

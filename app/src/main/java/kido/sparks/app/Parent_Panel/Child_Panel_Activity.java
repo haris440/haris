@@ -75,17 +75,24 @@ public class Child_Panel_Activity extends AppCompatActivity  implements Navigati
             }
         });
         Glide.with(this).asDrawable().centerCrop().load(""+pp.getBabyimg()).into(babyimg);
-if (pp.getBabygender().contains("Male"))
-{
-    constraintLayout.setBackgroundColor(getResources().getColor(R.color.blue));
-    navView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
-    navView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
-}
-else{
-    constraintLayout.setBackgroundColor(getResources().getColor(R.color.pink));
-    navView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.pink)));
-    navView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.pink)));
-}
+        try {
+            if (pp.getBabygender().contains("Male"))
+            {
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.blue));
+                navView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
+                navView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
+            }
+            else{
+                constraintLayout.setBackgroundColor(getResources().getColor(R.color.pink));
+                navView.setItemIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.pink)));
+                navView.setItemTextColor(ColorStateList.valueOf(getResources().getColor(R.color.pink)));
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
 //        CalculateBabyAge();
     }
     public static final String DATE_FORMAT = "dd/mm/yyyy";

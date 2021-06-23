@@ -26,8 +26,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import kido.sparks.app.Check_Network_Class;
+import kido.sparks.app.Doctor_Activities.Doctor_Signin;
+import kido.sparks.app.MainHome;
 import kido.sparks.app.Parent_Panel.Parent_Home;
 import kido.sparks.app.R;
+import kido.sparks.app.SharedPrefrenceClasses.SharedPrefrence;
 import kido.sparks.app.SignUp_Screens.SignUp;
 import kido.sparks.app.SplashScreen;
 
@@ -37,6 +40,7 @@ public class SignIn extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressBar mProgressBar;
     TextView btn;
+    SharedPrefrence sharedPrefrence;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +52,7 @@ public class SignIn extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_sign_in);
+        sharedPrefrence=new SharedPrefrence(this);
         cn = new Check_Network_Class(this);
         ed_email = findViewById(R.id.edemail);
         ed_pass = findViewById(R.id.edpass);
@@ -113,7 +118,7 @@ public class SignIn extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful()) {
-
+                        sharedPrefrence.setypeofuser("1");
 
                         Intent intent=new Intent(SignIn.this, Parent_Home.class);
                         startActivity(intent);
@@ -154,5 +159,13 @@ public class SignIn extends AppCompatActivity {
     public void forgotpass(View view) {
         Forgot_Password_Dialog forgot_password_dialog=new Forgot_Password_Dialog(SignIn.this);
         forgot_password_dialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+       Intent intent = new Intent(SignIn.this, MainHome.class);
+        startActivity(intent);
+        finish();
     }
 }

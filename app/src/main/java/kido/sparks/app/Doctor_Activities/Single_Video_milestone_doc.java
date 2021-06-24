@@ -40,12 +40,13 @@ public class Single_Video_milestone_doc extends AppCompatActivity implements  Mi
     Milestonevideo_Adapter adapter;
     private ProgressBar mProgressBar;
     ImageView empty;
+    Bundle bundle;
     private List<VideoModel> videoModels = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_video_milestone_doc);
-        Bundle bundle = getIntent().getExtras();
+       bundle = getIntent().getExtras();
         if (bundle != null) {
             month = bundle.get("month").toString();
 
@@ -84,7 +85,7 @@ public class Single_Video_milestone_doc extends AppCompatActivity implements  Mi
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.exists()) {
-                    Toast.makeText(Single_Video_milestone_doc.this, "exist", Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(Single_Video_milestone_doc.this, "exist", Toast.LENGTH_SHORT).show();
 
                     mProgressBar.setVisibility(View.GONE);
                     empty.setVisibility(View.INVISIBLE);
@@ -156,8 +157,11 @@ public class Single_Video_milestone_doc extends AppCompatActivity implements  Mi
 
     @Override
     public void OnrecylerListener(int position, List<VideoModel> vlist) {
-        Intent intent=new Intent(Single_Video_milestone_doc.this, ViewVideo.class);
+        Intent intent=new Intent(Single_Video_milestone_doc.this, ViewVideo2.class);
         intent.putExtra("list",vlist.get(position));
+        int pos=position+1;
+        intent.putExtra("pos",""+pos);
+        intent.putExtra("month",""+bundle.get("month").toString());
         startActivity(intent);
     }
 

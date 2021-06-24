@@ -38,6 +38,7 @@ public class Single_Video_Activity_doc extends AppCompatActivity implements Acti
     Activities_Adapter adapter;
     private List<Activity_Model> activity_model = new ArrayList<>();
     DatabaseReference refactivity;
+    Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class Single_Video_Activity_doc extends AppCompatActivity implements Acti
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        Bundle bundle = getIntent().getExtras();
+        bundle = getIntent().getExtras();
      Calculatemonthe(bundle.get("month").toString());
     }
 
@@ -96,15 +97,21 @@ public class Single_Video_Activity_doc extends AppCompatActivity implements Acti
 
     @Override
     public void OnrecylerListener(int position, List<Activity_Model> viewChildren) {
-        Intent intent=new Intent(Single_Video_Activity_doc.this, ViewActivity.class);
+        Intent intent=new Intent(Single_Video_Activity_doc.this, ViewActivity2.class);
         intent.putExtra("list",viewChildren.get(position));
+        int pos=position+1;
+        intent.putExtra("pos",""+pos);
+        intent.putExtra("month",""+bundle.get("month").toString());
         startActivity(intent);
     }
 
     @Override
     public void OnrecylerListenerOpen(int position, List<Activity_Model> viewChildren) {
-        Intent intent=new Intent(Single_Video_Activity_doc.this, ViewActivity.class);
+        Intent intent=new Intent(Single_Video_Activity_doc.this, ViewActivity2.class);
         intent.putExtra("list",viewChildren.get(position));
+        int pos=position+1;
+        intent.putExtra("pos",""+pos);
+        intent.putExtra("month",""+bundle.get("month").toString());
         startActivity(intent);
     }
 }

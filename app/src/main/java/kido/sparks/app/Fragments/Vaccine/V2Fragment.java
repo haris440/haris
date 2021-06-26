@@ -31,18 +31,20 @@ import java.util.List;
 import java.util.Map;
 
 import kido.sparks.app.Adapters.Counter_Adapter;
+import kido.sparks.app.Adapters.Counter_Adapter2;
 import kido.sparks.app.Adapters.Milestone_Adapter;
+import kido.sparks.app.Adapters.V2_Adapter;
 import kido.sparks.app.Fragments.dashboard.ViewMilestonevideos;
 import kido.sparks.app.Model.Milestone;
 import kido.sparks.app.Model.Viewchild;
 import kido.sparks.app.R;
 
 
-public class V2Fragment extends Fragment implements Milestone_Adapter.OnrecylerListener, Counter_Adapter.OnrecylerListenercounter {
+public class V2Fragment extends Fragment implements V2_Adapter.OnrecylerListener, Counter_Adapter2.OnrecylerListenercounter {
 
 
-    Milestone_Adapter milestone_adapter;
-    Counter_Adapter counter_adapter;
+    V2_Adapter milestone_adapter;
+    Counter_Adapter2 counter_adapter;
     RecyclerView recyclerView, recyclerView2;
 
     FirebaseAuth mAuth;
@@ -63,8 +65,8 @@ public class V2Fragment extends Fragment implements Milestone_Adapter.OnrecylerL
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyler);
         recyclerView2 = (RecyclerView) view.findViewById(R.id.recylercounter);
-        milestone_adapter = new Milestone_Adapter(this);
-        counter_adapter = new Counter_Adapter(this::OnrecylerListenercounter);
+        milestone_adapter = new V2_Adapter(this);
+        counter_adapter = new Counter_Adapter2(this::OnrecylerListenercounter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(milestone_adapter);
@@ -155,10 +157,10 @@ public class V2Fragment extends Fragment implements Milestone_Adapter.OnrecylerL
 
     @Override
     public void OnrecylerListenerUrl(int position, List<Milestone> milestones) {
-        Intent intent = new Intent(getActivity(), ViewMilestonevideos.class);
-        intent.putExtra("month", "month" + which);
-        intent.putExtra("key", "" + milestones.get(position).getKey());
-        intent.putExtra("ckey", "" + pp.getKey());
+        Intent intent = new Intent(getActivity(), ViewV2detail.class);
+
+        intent.putExtra("des", "" + milestones.get(position).getExtra());
+        intent.putExtra("name", "" + milestones.get(position).getName());
         startActivity(intent);
 //        try {
 //            String url = ""+milestones.get(position).getUrl();
@@ -176,14 +178,46 @@ public class V2Fragment extends Fragment implements Milestone_Adapter.OnrecylerL
     public void OnrecylerListenercounter(int position) {
 //             List<Milestone> list = new ArrayList<>();
         int pos = position + 1;
-//        list.add(new Milestone("text+pos"+pos,false," extra", "url",false,"name",""));
-//        list.add(new Milestone("text",true," extra", "url",false,"name",""));
-//        list.add(new Milestone("text",true," extra", "url",false,"name",""));
-        counter_adapter.setlist(position);
+        if( position==0 )
+        {
+            counter_adapter.setlist(pos);
+            GetMileStones(1);
+            counter_adapter.setlist(position);
+
+        }
+        if( position==1 )
+        {
+            counter_adapter.setlist(pos);
+            GetMileStones(2);
+            counter_adapter.setlist(position);
+
+        }
+        if(  position==2)
+        {
+            counter_adapter.setlist(pos);
+            GetMileStones(3);
+            counter_adapter.setlist(position);
+
+        }
+        else if(position==3)
+        {
+            GetMileStones(9);
+            counter_adapter.setlist(position);
+        }
+        else if(position==4)
+        {
+            GetMileStones(15);
+
+            counter_adapter.setlist(position);
+        }
+        else{
+
+        }
+
 //           milestone_adapter.setlist(list);
-        Toast.makeText(getActivity(), "" + pos + "" + position, Toast.LENGTH_SHORT).show();
-        which = pos;
-        GetMileStones((int) which);
+//        Toast.makeText(getActivity(), "" + pos + "" + position, Toast.LENGTH_SHORT).show();
+//        which = pos;
+//        GetMileStones((int) which);
     }
 
     private void CopyPasteDATA(final DatabaseReference fromPath, final DatabaseReference toPath, int which) {
@@ -286,11 +320,36 @@ public class V2Fragment extends Fragment implements Milestone_Adapter.OnrecylerL
 
         }
 
-        counter_adapter.setlist((int) start - 1);
-        recyclerView2.scrollToPosition((int) start - 1);
+
         milestone_adapter.setlist(list);
         which = (int) start;
-        GetMileStones((int) start);
+        if(which==1 || which==2 || which==3|| which==9 ||  which==15)
+        {
+            if(which==9)
+            {
+                counter_adapter.setlist(3);
+                GetMileStones(9);
+                recyclerView2.scrollToPosition((int) start - 1);
+            }
+            else if(which==15)
+            {
+                counter_adapter.setlist(4);
+                GetMileStones(15);
+                recyclerView2.scrollToPosition((int) start - 1);
+            }
+            else{
+                counter_adapter.setlist((int) start - 1);
+                GetMileStones(which);
+                recyclerView2.scrollToPosition((int) start - 1);
+        }
+
+
+        }
+        else{
+            Toast.makeText(getActivity(), "No vaccination for this month", Toast.LENGTH_SHORT).show();
+
+        }
+
 
     }
 

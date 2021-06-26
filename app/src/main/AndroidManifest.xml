@@ -19,7 +19,8 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Doctor_Activities.ViewActivity2"></activity>
+        <activity android:name=".Fragments.Vaccine.ViewV2detail"></activity>
+        <activity android:name=".Doctor_Activities.ViewActivity2" />
         <activity android:name=".Doctor_Activities.ViewVideo2" />
         <activity android:name=".Doctor_Activities.Single_Video_milestone_doc" />
         <activity android:name=".Doctor_Activities.Single_Video_Activity_doc" />

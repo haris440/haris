@@ -22,7 +22,7 @@ public class V2_Adapter extends RecyclerView.Adapter<V2_Adapter.ViewHolder_Miles
     @Override
     public ViewHolder_Milestone_Dashboard onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.v2_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.milestone_item, parent, false);
         return new ViewHolder_Milestone_Dashboard(view,mOnrecylerListener);
 
     }
@@ -49,7 +49,12 @@ holder.checkBox.setOnClickListener(new View.OnClickListener() {
      mOnrecylerListener.OnrecylerListener(position,vlist);
     }
 });
-
+holder.imgvedio.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        mOnrecylerListener.OnrecylerListenerUrl(position,vlist);
+    }
+});
     }
 
     @Override
@@ -71,12 +76,12 @@ holder.checkBox.setOnClickListener(new View.OnClickListener() {
     public class ViewHolder_Milestone_Dashboard extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         CheckBox checkBox;
-
+        ImageView imgvedio;
         OnrecylerListener mOnrecylerListener1;
         public ViewHolder_Milestone_Dashboard(@NonNull View itemView, OnrecylerListener mOnrecylerListener) {
             super(itemView);
             checkBox=itemView.findViewById(R.id.checkBox);
-
+            imgvedio=itemView.findViewById(R.id.imgvedio);
             mOnrecylerListener1 = mOnrecylerListener;
             itemView.setOnClickListener(this);
         }
